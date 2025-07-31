@@ -61,9 +61,23 @@ public class SignUpController {
             return;
         }
 
-        System.out.println("Sign up successful - Name: " + fullName + ", ID: " + idNumber + ", User Type: " + userType);
-        // After successful signup, navigate back to login
-        SceneManager.switchToLogin(event);
+        // Check if user already exists
+        DatabaseManager dbManager = DatabaseManager.getInstance();
+        if (dbManager.userExists(idNumber)) {
+            System.out.println("User with this ID number already exists!");
+            return;
+        }
+
+        // Create user and register
+        User newUser = new User(fullName, idNumber, userType, password);
+        boolean success = dbManager.registerUser(newUser);
+
+        if (success) {
+            System.out.println("Registration successful! Please login with your credentials.");
+            SceneManager.switchToLogin(event);
+        } else {
+            System.out.println("Registration failed. Please try again.");
+        }
     }
 
     @FXML
