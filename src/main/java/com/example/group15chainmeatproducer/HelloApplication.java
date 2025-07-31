@@ -10,6 +10,8 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        DatabaseUtil.initializeDatabase();
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/group15chainmeatproducer/Loginfxml.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Chain Meat Producer - Login");

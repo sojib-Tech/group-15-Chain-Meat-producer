@@ -24,6 +24,12 @@ public class LoginController {
     @FXML
     private Button signUpButton;
 
+    private static DatabaseUtil.User currentUser;
+
+    public static DatabaseUtil.User getCurrentUser() {
+        return currentUser;
+    }
+
     @FXML
     private void initialize() {
         userTypeComboBox.getItems().addAll(
@@ -48,18 +54,14 @@ public class LoginController {
             return;
         }
 
-        // Authenticate user using database
-        DatabaseManager dbManager = DatabaseManager.getInstance();
-        User authenticatedUser = dbManager.authenticateUser(idNumber, password, userType);
-
-        if (authenticatedUser != null) {
-            System.out.println("Login successful - Welcome, " + authenticatedUser.getFullName() + "!");
-            // Store current user session (you can expand this later)
-            CurrentUserSession.setCurrentUser(authenticatedUser);
+        // Authenticate users against the database
+        DatabaseUtil.User user = DatabaseUtil.authenticateUser(idNumber, userType, password);
+        if (user != null) {
+            currentUser = user;
+            System.out.println("Login successful - ID: " + idNumber + ", User Type: " + userType);
             // After successful login, you can navigate to appropriate dashboard
-            // SceneManager.switchToDashboard(event, userType);
         } else {
-            System.out.println("Invalid credentials or user type. Please try again.");
+            System.out.println("Invalid credentials!");
         }
     }
 
