@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="20" style="-fx-padding: 25; -fx-background-color: #f8f9fa;">
+    <Label text="Checkout" style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-padding: 0 0 10 0;" />
+
+    <GridPane hgap="15" vgap="15" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.5, 0, 0);">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="30" />
+            <ColumnConstraints percentWidth="70" />
+        </columnConstraints>
+
+        <Label text="Delivery Address:" style="-fx-font-weight: bold;" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <TextArea fx:id="addressField" promptText="Enter full address" style="-fx-background-radius: 4; -fx-border-color: #ddd; -fx-border-radius: 4;" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Contact Number:" style="-fx-font-weight: bold;" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <TextField fx:id="phoneField" promptText="Phone number" style="-fx-background-radius: 4; -fx-border-color: #ddd; -fx-border-radius: 4;" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <Label text="Payment Method:" style="-fx-font-weight: bold;" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <ComboBox fx:id="paymentMethod" style="-fx-background-radius: 4;" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.5, 0, 0);">
+        <Label text="Order Summary" style="-fx-font-weight: bold; -fx-font-size: 18;" />
+        <ListView fx:id="orderItems" style="-fx-border-color: #eee; -fx-border-radius: 4; -fx-min-height: 150; -fx-max-height: 250;" />
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 15 0 0 0;">
+            <Label text="Total:" style="-fx-font-size: 16;" />
+            <Label fx:id="totalPrice" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+        </HBox>
+    </VBox>
+
+    <Button text="Place Order" onAction="#placeOrder" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16; -fx-padding: 12 35; -fx-background-radius: 4; -fx-cursor: hand;" />
+</VBox>
