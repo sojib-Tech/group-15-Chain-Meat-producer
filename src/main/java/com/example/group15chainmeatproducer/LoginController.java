@@ -59,7 +59,20 @@ public class LoginController {
         if (user != null) {
             currentUser = user;
             System.out.println("Login successful - ID: " + idNumber + ", User Type: " + userType);
-            // After successful login, you can navigate to appropriate dashboard
+
+            // Navigate to appropriate dashboard based on user type
+            switch (userType) {
+                case "Quality Assurance Officer":
+                    SceneManager.switchToUser3Menu(event);
+                    break;
+                case "Inventory Manager":
+                    SceneManager.switchToUser4Menu(event);
+                    break;
+                default:
+                    System.out.println("Dashboard not available for user type: " + userType);
+                    // For other user types, you can add more cases or default behavior
+                    break;
+            }
         } else {
             System.out.println("Invalid credentials!");
         }

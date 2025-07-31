@@ -10,6 +10,10 @@ module com.example.group15chainmeatproducer {
     exports com.example.group15chainmeatproducer.Ami;
     opens com.example.group15chainmeatproducer.Saiful to javafx.fxml;
     exports com.example.group15chainmeatproducer.Saiful;
+    opens com.example.group15chainmeatproducer.Saiful.User3 to javafx.fxml;
+    exports com.example.group15chainmeatproducer.Saiful.User3;
+    opens com.example.group15chainmeatproducer.Saiful.User4 to javafx.fxml;
+    exports com.example.group15chainmeatproducer.Saiful.User4;
     opens com.example.group15chainmeatproducer.Sojib to javafx.fxml;
     exports com.example.group15chainmeatproducer.Sojib;
 }
