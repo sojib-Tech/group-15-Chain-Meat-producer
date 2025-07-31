@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SignUpController"
+            prefHeight="500.0" prefWidth="600.0">
+
+    <VBox alignment="CENTER" spacing="15.0" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="150.0"
+          AnchorPane.rightAnchor="150.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+
+        <Label text="Sign Up" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <VBox spacing="10.0">
+            <Label text="Full Name:"/>
+            <TextField fx:id="fullNameField" promptText="Enter your full name"/>
+        </VBox>
+
+        <VBox spacing="10.0">
+            <Label text="ID Number:"/>
+            <TextField fx:id="idNumberField" promptText="Enter your ID number"/>
+        </VBox>
+
+        <VBox spacing="10.0">
+            <Label text="User Type:"/>
+            <ComboBox fx:id="userTypeComboBox" prefWidth="200.0" promptText="Select user type"/>
+        </VBox>
+
+        <VBox spacing="10.0">
+            <Label text="Password:"/>
+            <PasswordField fx:id="passwordField" promptText="Enter your password"/>
+        </VBox>
+
+        <VBox spacing="10.0">
+            <Label text="Confirm Password:"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password"/>
+        </VBox>
+
+        <HBox spacing="15.0" alignment="CENTER">
+            <Button fx:id="backButton" text="Back" onAction="#handleBack" prefWidth="100.0"
+                    style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Button fx:id="signUpButton" text="Sign Up" onAction="#handleSignUp" prefWidth="100.0"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
+        </HBox>
+    </VBox>
+
+</AnchorPane>
