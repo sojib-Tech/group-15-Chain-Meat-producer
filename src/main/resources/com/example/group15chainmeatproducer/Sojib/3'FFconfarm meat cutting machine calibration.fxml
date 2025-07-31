@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="636.0" prefWidth="829.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group15chainmeatproducer.Sojib.ConfarmMeatCuttingMachineCalibration">
    <children>
       <TextField fx:id="opreatorName" layoutX="24.0" layoutY="27.0" promptText="Opertor Name" />
@@ -16,7 +15,7 @@
       <Button layoutX="335.0" layoutY="130.0" mnemonicParsing="false" onAction="#checkCalibrationStatus" prefHeight="26.0" prefWidth="187.0" text="CHECK CALIBRATION STATUS" />
       <Button layoutX="619.0" layoutY="130.0" mnemonicParsing="false" onAction="#updateStatus" prefHeight="26.0" prefWidth="187.0" text="Update Status" />
       <Button layoutX="42.0" layoutY="234.0" mnemonicParsing="false" onAction="#saveLog" prefHeight="26.0" prefWidth="187.0" text="SAVE LOG" />
-      <Button layoutX="627.0" layoutY="595.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="187.0" text="BACK GOAL 2" />
+      <Button layoutX="627.0" layoutY="595.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="187.0" text="BACK GOAL 2" />
       <TableView fx:id="tableConfarmMeatCuttingMachine_calibration" layoutY="293.0" prefHeight="200.0" prefWidth="643.0">
         <columns>
           <TableColumn fx:id="t_oprator_table" prefWidth="184.8000122308731" text="OPERATOR NAMR" />
