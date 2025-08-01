@@ -44,7 +44,6 @@ public class SignUpController {
 
     @FXML
     private void handleSignUp(ActionEvent event) {
-        // Sign up logic here
         String fullName = fullNameField.getText();
         String idNumber = idNumberField.getText();
         String userType = userTypeComboBox.getValue();
@@ -61,9 +60,17 @@ public class SignUpController {
             return;
         }
 
-        System.out.println("Sign up successful - Name: " + fullName + ", ID: " + idNumber + ", User Type: " + userType);
-        // After successful signup, navigate back to login
-        SceneManager.switchToLogin(event);
+        if (DatabaseUtil.userExists(idNumber)) {
+            System.out.println("User with this ID already exists!");
+            return;
+        }
+
+        if (DatabaseUtil.registerUser(fullName, idNumber, userType, password)) {
+            System.out.println("Sign up successful - Name: " + fullName + ", ID: " + idNumber + ", User Type: " + userType);
+            SceneManager.switchToLogin(event);
+        } else {
+            System.out.println("Sign up failed! Please try again.");
+        }
     }
 
     @FXML
