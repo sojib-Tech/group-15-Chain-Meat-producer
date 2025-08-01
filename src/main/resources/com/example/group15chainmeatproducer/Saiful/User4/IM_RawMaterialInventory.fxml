@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMRawMaterialInventoryController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;"
+                       text="Verify Incoming Raw Material Inventory"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: Login to Inventory Portal"/>
+                        <TextField fx:id="portalUsernameField" promptText="Portal Username"/>
+                        <PasswordField fx:id="portalPasswordField" promptText="Portal Password"/>
+                        <Button fx:id="loginPortalButton" onAction="#handleLoginPortal" text="Login to Portal"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Delivery Batch"/>
+                        <ComboBox fx:id="deliveryBatchComboBox" promptText="Select Delivery Batch"/>
+                        <Button fx:id="selectBatchButton" onAction="#handleSelectBatch" text="Select Batch"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: Check Supplier Invoice Against Items"/>
+                        <TextArea fx:id="invoiceDetailsArea" prefRowCount="4" promptText="Invoice details..."/>
+                        <TextArea fx:id="itemsReceivedArea" prefRowCount="4" promptText="Items received..."/>
+                        <Button fx:id="checkInvoiceButton" onAction="#handleCheckInvoice" text="Check Invoice"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Input Received Quantities"/>
+                        <TextField fx:id="item1QuantityField" promptText="Item 1 Quantity"/>
+                        <TextField fx:id="item2QuantityField" promptText="Item 2 Quantity"/>
+                        <TextField fx:id="item3QuantityField" promptText="Item 3 Quantity"/>
+                        <Button fx:id="inputQuantitiesButton" onAction="#handleInputQuantities"
+                                text="Input Quantities"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Report Mismatch if Found"/>
+                        <CheckBox fx:id="mismatchFoundBox" text="Mismatch found"/>
+                        <TextArea fx:id="mismatchDetailsArea" prefRowCount="3" promptText="Mismatch details..."/>
+                        <Button fx:id="reportMismatchButton" onAction="#handleReportMismatch" text="Report Mismatch"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Finalize Stock Entry"/>
+                        <TextArea fx:id="finalNotesArea" prefRowCount="2" promptText="Final notes..."/>
+                        <Button fx:id="finalizeEntryButton" onAction="#handleFinalizeEntry" text="Finalize Entry"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Verification"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>

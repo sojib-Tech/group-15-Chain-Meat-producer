@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAEquipmentCalibrationController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;"
+                       text="Oversee Calibration of Critical Equipment"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: Navigate to Equipment Dashboard"/>
+                        <Button fx:id="navigateDashboardButton" onAction="#handleNavigateDashboard"
+                                text="Navigate to Dashboard"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Equipment Requiring Calibration"/>
+                        <ComboBox fx:id="equipmentComboBox" promptText="Select Equipment"/>
+                        <Button fx:id="selectEquipmentButton" onAction="#handleSelectEquipment"
+                                text="Select Equipment"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: View Last Calibration Log"/>
+                        <TextArea fx:id="lastCalibrationArea" editable="false" prefRowCount="3"
+                                  promptText="Last calibration log will appear here..."/>
+                        <Button fx:id="viewLogButton" onAction="#handleViewLog" text="View Last Log"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Record Current Calibration Metrics"/>
+                        <TextField fx:id="temperatureField" promptText="Temperature Reading"/>
+                        <TextField fx:id="pressureField" promptText="Pressure Reading"/>
+                        <TextField fx:id="accuracyField" promptText="Accuracy Percentage"/>
+                        <TextArea fx:id="metricsNotesArea" prefRowCount="2"
+                                  promptText="Additional calibration notes..."/>
+                        <Button fx:id="recordMetricsButton" onAction="#handleRecordMetrics" text="Record Metrics"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Submit Calibration Confirmation"/>
+                        <ComboBox fx:id="statusComboBox" promptText="Calibration Status">
+                        </ComboBox>
+                        <Button fx:id="submitConfirmationButton" onAction="#handleSubmitConfirmation"
+                                text="Submit Confirmation"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Alert Maintenance if Deviation Detected"/>
+                        <TextArea fx:id="alertNotesArea" prefRowCount="2" promptText="Maintenance alert notes..."/>
+                        <CheckBox fx:id="deviationCheckBox" text="Deviation detected - Alert maintenance"/>
+                        <Button fx:id="alertMaintenanceButton" onAction="#handleAlertMaintenance" text="Send Alert"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Calibration"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>
