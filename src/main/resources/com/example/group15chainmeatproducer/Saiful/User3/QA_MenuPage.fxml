@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAMenuController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Quality Assurance Officer Dashboard"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <GridPane hgap="15" vgap="15">
+            <children>
+                <Button fx:id="goal1Button" onAction="#handleGoal1" prefHeight="80" prefWidth="300"
+                        text="Goal 1: Perform Pre-Slaughter Animal Inspection" GridPane.columnIndex="0"
+                        GridPane.rowIndex="0"/>
+                <Button fx:id="goal2Button" onAction="#handleGoal2" prefHeight="80" prefWidth="300"
+                        text="Goal 2: Verify Hygiene Checklist Post-Cleaning" GridPane.columnIndex="1"
+                        GridPane.rowIndex="0"/>
+                <Button fx:id="goal3Button" onAction="#handleGoal3" prefHeight="80" prefWidth="300"
+                        text="Goal 3: Oversee Calibration of Critical Equipment" GridPane.columnIndex="0"
+                        GridPane.rowIndex="1"/>
+                <Button fx:id="goal4Button" onAction="#handleGoal4" prefHeight="80" prefWidth="300"
+                        text="Goal 4: Evaluate Meat Quality Parameters" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Button fx:id="goal5Button" onAction="#handleGoal5" prefHeight="80" prefWidth="300"
+                        text="Goal 5: Approve Packaging Standards" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Button fx:id="goal6Button" onAction="#handleGoal6" prefHeight="80" prefWidth="300"
+                        text="Goal 6: Audit Cold Storage Temperature Logs" GridPane.columnIndex="1"
+                        GridPane.rowIndex="2"/>
+                <Button fx:id="goal7Button" onAction="#handleGoal7" prefHeight="80" prefWidth="300"
+                        text="Goal 7: Monitor HACCP Compliance Points" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Button fx:id="goal8Button" onAction="#handleGoal8" prefHeight="80" prefWidth="300"
+                        text="Goal 8: Approve Final Product Batch for Dispatch" GridPane.columnIndex="1"
+                        GridPane.rowIndex="3"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </GridPane>
+    </children>
+</VBox>

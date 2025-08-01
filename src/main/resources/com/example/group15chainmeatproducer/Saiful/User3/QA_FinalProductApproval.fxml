@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAFinalProductApprovalController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;"
+                       text="Approve Final Product Batch for Dispatch"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: Log into QA Dashboard"/>
+                        <TextField fx:id="dashboardUsernameField" promptText="QA Dashboard Username"/>
+                        <PasswordField fx:id="dashboardPasswordField" promptText="QA Dashboard Password"/>
+                        <Button fx:id="loginDashboardButton" onAction="#handleLoginDashboard"
+                                text="Login to Dashboard"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Batch ID for Final Review"/>
+                        <ComboBox fx:id="batchIdComboBox" promptText="Select Batch ID"/>
+                        <Button fx:id="selectBatchButton" onAction="#handleSelectBatch" text="Select Batch"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: Review Complete Quality Records"/>
+                        <TextArea fx:id="qualityRecordsArea" editable="false" prefRowCount="5"
+                                  promptText="Quality records will appear here..."/>
+                        <Button fx:id="reviewRecordsButton" onAction="#handleReviewRecords" text="Review Records"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Confirm Batch Meets Standards"/>
+                        <CheckBox fx:id="qualityStandardsBox" text="Quality standards met"/>
+                        <CheckBox fx:id="safetyStandardsBox" text="Safety standards met"/>
+                        <CheckBox fx:id="packagingStandardsBox" text="Packaging standards met"/>
+                        <CheckBox fx:id="labelingStandardsBox" text="Labeling standards met"/>
+                        <TextArea fx:id="standardsNotesArea" prefRowCount="2"
+                                  promptText="Standards confirmation notes..."/>
+                        <Button fx:id="confirmStandardsButton" onAction="#handleConfirmStandards"
+                                text="Confirm Standards"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Submit Approval Decision"/>
+                        <ComboBox fx:id="approvalDecisionComboBox" promptText="Approval Decision">
+                            <items>
+                                <String fx:value="Approved for Dispatch"/>
+                                <String fx:value="Conditional Approval"/>
+                                <String fx:value="Rejected"/>
+                            </items>
+                        </ComboBox>
+                        <TextArea fx:id="decisionReasonsArea" prefRowCount="3" promptText="Decision reasons..."/>
+                        <Button fx:id="submitDecisionButton" onAction="#handleSubmitDecision" text="Submit Decision"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Notify Dispatch Team"/>
+                        <TextArea fx:id="dispatchNotificationArea" prefRowCount="3"
+                                  promptText="Dispatch team notification..."/>
+                        <TextField fx:id="estimatedDispatchField" promptText="Estimated Dispatch Time"/>
+                        <Button fx:id="notifyDispatchButton" onAction="#handleNotifyDispatch"
+                                text="Notify Dispatch Team"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Approval"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>

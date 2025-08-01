@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAColdStorageAuditController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Audit Cold Storage Temperature Logs"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: Login to Cold Storage Tracker"/>
+                        <TextField fx:id="trackerUsernameField" promptText="Tracker Username"/>
+                        <PasswordField fx:id="trackerPasswordField" promptText="Tracker Password"/>
+                        <Button fx:id="loginTrackerButton" onAction="#handleLoginTracker" text="Login to Tracker"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Current Storage Room"/>
+                        <ComboBox fx:id="storageRoomComboBox" promptText="Select Storage Room"/>
+                        <Button fx:id="selectRoomButton" onAction="#handleSelectRoom" text="Select Room"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: Review Live Temperature Trends"/>
+                        <TextArea fx:id="temperatureTrendsArea" editable="false" prefRowCount="4"
+                                  promptText="Temperature trends will appear here..."/>
+                        <Button fx:id="reviewTrendsButton" onAction="#handleReviewTrends" text="Review Trends"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Export Report for Audit"/>
+                        <ComboBox fx:id="reportFormatComboBox" promptText="Report Format">
+                            <items>
+                                <String fx:value="PDF"/>
+                                <String fx:value="Excel"/>
+                                <String fx:value="CSV"/>
+                            </items>
+                        </ComboBox>
+                        <Button fx:id="exportReportButton" onAction="#handleExportReport" text="Export Report"/>
+                        <Label fx:id="exportStatusLabel" text="No report exported"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Sign and Submit Verification"/>
+                        <TextArea fx:id="verificationNotesArea" prefRowCount="3" promptText="Verification notes..."/>
+                        <TextField fx:id="digitalSignatureField" promptText="Digital Signature"/>
+                        <Button fx:id="submitVerificationButton" onAction="#handleSubmitVerification"
+                                text="Submit Verification"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Notify Management if Fluctuation Occurs"/>
+                        <CheckBox fx:id="fluctuationDetectedBox" text="Temperature fluctuation detected"/>
+                        <TextArea fx:id="managementNotesArea" prefRowCount="3"
+                                  promptText="Management notification notes..."/>
+                        <Button fx:id="notifyManagementButton" onAction="#handleNotifyManagement"
+                                text="Notify Management"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Audit"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>
