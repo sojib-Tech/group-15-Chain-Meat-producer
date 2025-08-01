@@ -62,6 +62,12 @@ public class LoginController {
 
             // Navigate to appropriate dashboard based on user type
             switch (userType) {
+                case "Factory Floor Operator":
+                    SceneManager.switchToUser1Menu(event);
+                    break;
+                case "Export Coordinator":
+                    SceneManager.switchToUser2Menu(event);
+                    break;
                 case "Quality Assurance Officer":
                     SceneManager.switchToUser3Menu(event);
                     break;

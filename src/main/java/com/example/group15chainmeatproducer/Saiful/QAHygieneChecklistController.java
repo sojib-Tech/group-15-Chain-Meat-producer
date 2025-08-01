@@ -77,7 +77,7 @@ public class QAHygieneChecklistController {
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToUser3Menu(event);
     }
 
     @FXML

@@ -38,6 +38,34 @@ public class SceneManager {
         }
     }
 
+    public static void switchToUser1Menu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Sojib/User1/FF_MenuPage.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Factory Floor Worker Dashboard");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchToUser2Menu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Sojib/User2/EC_MenuPage.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Export Coordinator Dashboard");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void switchToUser3Menu(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Saiful/User3/QA_MenuPage.fxml"));
