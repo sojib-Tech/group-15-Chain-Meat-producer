@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMDamagedStockController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Manage Damaged or Expired Stock"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: Filter Items Near Expiry"/>
+                        <DatePicker fx:id="expiryDatePicker" promptText="Select Date Range"/>
+                        <Button fx:id="filterItemsButton" onAction="#handleFilterItems" text="Filter Items"/>
+                        <ListView fx:id="nearExpiryListView" prefHeight="100"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Isolate Damaged/Expired Lots"/>
+                        <TextArea fx:id="isolationNotesArea" prefRowCount="3" promptText="Isolation process notes..."/>
+                        <Button fx:id="isolateLotsButton" onAction="#handleIsolateLots" text="Isolate Lots"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: Tag Items as Non-usable"/>
+                        <TextField fx:id="tagNumberField" promptText="Tag Number"/>
+                        <ComboBox fx:id="statusComboBox" promptText="Status">
+                            <items>
+                                <String fx:value="Damaged"/>
+                                <String fx:value="Expired"/>
+                                <String fx:value="Contaminated"/>
+                            </items>
+                        </ComboBox>
+                        <Button fx:id="tagItemsButton" onAction="#handleTagItems" text="Tag Items"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Record Reason and Quantity"/>
+                        <TextField fx:id="quantityField" promptText="Quantity"/>
+                        <TextArea fx:id="reasonArea" prefRowCount="3" promptText="Reason for disposal..."/>
+                        <Button fx:id="recordReasonButton" onAction="#handleRecordReason" text="Record Details"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Remove from Active Inventory"/>
+                        <CheckBox fx:id="confirmRemovalBox" text="Confirm removal from inventory"/>
+                        <Button fx:id="removeInventoryButton" onAction="#handleRemoveInventory"
+                                text="Remove from Inventory"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Notify Quality &amp; Compliance"/>
+                        <TextArea fx:id="notificationArea" prefRowCount="2" promptText="Notification message..."/>
+                        <Button fx:id="notifyComplianceButton" onAction="#handleNotifyCompliance"
+                                text="Notify Quality &amp; Compliance"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Management"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>
