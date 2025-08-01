@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMMenuController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Inventory Manager Dashboard"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <GridPane hgap="15" vgap="15">
+            <children>
+                <Button fx:id="goal1Button" onAction="#handleGoal1" prefHeight="80" prefWidth="300"
+                        text="Goal 1: Verify Incoming Raw Material Inventory" GridPane.columnIndex="0"
+                        GridPane.rowIndex="0"/>
+                <Button fx:id="goal2Button" onAction="#handleGoal2" prefHeight="80" prefWidth="300"
+                        text="Goal 2: Monitor Live Processing Floor Inventory" GridPane.columnIndex="1"
+                        GridPane.rowIndex="0"/>
+                <Button fx:id="goal3Button" onAction="#handleGoal3" prefHeight="80" prefWidth="300"
+                        text="Goal 3: Track Packaging Material Usage" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Button fx:id="goal4Button" onAction="#handleGoal4" prefHeight="80" prefWidth="300"
+                        text="Goal 4: Conduct Weekly Inventory Audit" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Button fx:id="goal5Button" onAction="#handleGoal5" prefHeight="80" prefWidth="300"
+                        text="Goal 5: Manage Damaged or Expired Stock" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Button fx:id="goal6Button" onAction="#handleGoal6" prefHeight="80" prefWidth="300"
+                        text="Goal 6: Dispatch Stock to Export Area" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Button fx:id="goal7Button" onAction="#handleGoal7" prefHeight="80" prefWidth="300"
+                        text="Goal 7: Generate Monthly Stock Reports" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Button fx:id="goal8Button" onAction="#handleGoal8" prefHeight="80" prefWidth="300"
+                        text="Goal 8: Reconcile Stock After Shipment Dispatch" GridPane.columnIndex="1"
+                        GridPane.rowIndex="3"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </GridPane>
+    </children>
+</VBox>

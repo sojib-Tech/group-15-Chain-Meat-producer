@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMProcessingFloorInventoryController">
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <children>
+                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;"
+                       text="Monitor Live Processing Floor Inventory"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+
+        <VBox spacing="15">
+            <children>
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 1: View Processing Inventory Dashboard"/>
+                        <Button fx:id="viewDashboardButton" onAction="#handleViewDashboard" text="View Dashboard"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Current Shift &amp; Line"/>
+                        <ComboBox fx:id="shiftComboBox" promptText="Select Shift"/>
+                        <ComboBox fx:id="lineComboBox" promptText="Select Production Line"/>
+                        <Button fx:id="selectShiftLineButton" onAction="#handleSelectShiftLine"
+                                text="Select Shift &amp; Line"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 3: Review Consumption Data"/>
+                        <TextArea fx:id="consumptionDataArea" editable="false" prefRowCount="4"
+                                  promptText="Consumption data will appear here..."/>
+                        <Button fx:id="reviewDataButton" onAction="#handleReviewData" text="Review Data"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 4: Compare with Expected Usage"/>
+                        <TextField fx:id="expectedUsageField" promptText="Expected Usage"/>
+                        <TextField fx:id="actualUsageField" promptText="Actual Usage"/>
+                        <TextField fx:id="varianceField" editable="false" promptText="Variance"/>
+                        <Button fx:id="compareUsageButton" onAction="#handleCompareUsage" text="Compare Usage"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 5: Enter Real-time Update"/>
+                        <TextArea fx:id="realTimeUpdateArea" prefRowCount="3"
+                                  promptText="Enter real-time inventory updates..."/>
+                        <TextField fx:id="updateTimeField" promptText="Update Time"/>
+                        <Button fx:id="enterUpdateButton" onAction="#handleEnterUpdate" text="Enter Update"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="10">
+                    <children>
+                        <Label style="-fx-font-weight: bold;" text="Step 6: Alert Floor Supervisor if Low"/>
+                        <CheckBox fx:id="lowStockBox" text="Low stock detected"/>
+                        <TextArea fx:id="alertDetailsArea" prefRowCount="2"
+                                  promptText="Alert details for supervisor..."/>
+                        <Button fx:id="alertSupervisorButton" onAction="#handleAlertSupervisor"
+                                text="Alert Supervisor"/>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+
+        <HBox alignment="CENTER" spacing="20">
+            <children>
+                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
+                <Button fx:id="completeButton" onAction="#handleComplete"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Monitoring"/>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </HBox>
+    </children>
+</VBox>
