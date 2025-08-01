@@ -41,11 +41,6 @@
                         <Label style="-fx-font-weight: bold;" text="Step 3: Tag Items as Non-usable"/>
                         <TextField fx:id="tagNumberField" promptText="Tag Number"/>
                         <ComboBox fx:id="statusComboBox" promptText="Status">
-                            <items>
-                                <String fx:value="Damaged"/>
-                                <String fx:value="Expired"/>
-                                <String fx:value="Contaminated"/>
-                            </items>
                         </ComboBox>
                         <Button fx:id="tagItemsButton" onAction="#handleTagItems" text="Tag Items"/>
                     </children>

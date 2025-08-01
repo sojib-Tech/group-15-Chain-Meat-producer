@@ -49,11 +49,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 4: Export Report for Audit"/>
                         <ComboBox fx:id="reportFormatComboBox" promptText="Report Format">
-                            <items>
-                                <String fx:value="PDF"/>
-                                <String fx:value="Excel"/>
-                                <String fx:value="CSV"/>
-                            </items>
                         </ComboBox>
                         <Button fx:id="exportReportButton" onAction="#handleExportReport" text="Export Report"/>
                         <Label fx:id="exportStatusLabel" text="No report exported"/>

@@ -74,11 +74,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 6: Approve or Hold Batch Status"/>
                         <ComboBox fx:id="batchStatusComboBox" promptText="Batch Status">
-                            <items>
-                                <String fx:value="Approved"/>
-                                <String fx:value="Hold for Review"/>
-                                <String fx:value="Rejected"/>
-                            </items>
                         </ComboBox>
                         <TextArea fx:id="statusReasonArea" prefRowCount="2" promptText="Reason for status decision..."/>
                         <Button fx:id="setBatchStatusButton" onAction="#handleSetBatchStatus" text="Set Batch Status"/>

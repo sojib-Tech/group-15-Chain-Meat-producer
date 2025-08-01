@@ -62,11 +62,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 5: Submit Calibration Confirmation"/>
                         <ComboBox fx:id="statusComboBox" promptText="Calibration Status">
-                            <items>
-                                <String fx:value="Passed"/>
-                                <String fx:value="Failed"/>
-                                <String fx:value="Requires Adjustment"/>
-                            </items>
                         </ComboBox>
                         <Button fx:id="submitConfirmationButton" onAction="#handleSubmitConfirmation"
                                 text="Submit Confirmation"/>

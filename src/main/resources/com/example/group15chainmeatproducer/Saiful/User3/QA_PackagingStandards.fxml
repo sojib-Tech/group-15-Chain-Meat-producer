@@ -68,11 +68,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 6: Approve or Reject Batch for Dispatch"/>
                         <ComboBox fx:id="decisionComboBox" promptText="Batch Decision">
-                            <items>
-                                <String fx:value="Approved for Dispatch"/>
-                                <String fx:value="Rejected - Rework Required"/>
-                                <String fx:value="Hold for Further Review"/>
-                            </items>
                         </ComboBox>
                         <TextArea fx:id="decisionReasonArea" prefRowCount="2" promptText="Reason for decision..."/>
                         <Button fx:id="makeDecisionButton" onAction="#handleMakeDecision" text="Submit Decision"/>

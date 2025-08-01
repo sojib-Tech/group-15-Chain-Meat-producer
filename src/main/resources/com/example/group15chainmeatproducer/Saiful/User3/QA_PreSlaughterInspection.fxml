@@ -55,11 +55,6 @@
                         <Label style="-fx-font-weight: bold;" text="Step 4: Enter Findings in Inspection Form"/>
                         <TextArea fx:id="findingsArea" prefRowCount="4" promptText="Enter detailed findings..."/>
                         <ComboBox fx:id="statusComboBox" promptText="Select Status">
-                            <items>
-                                <String fx:value="Approved"/>
-                                <String fx:value="Rejected"/>
-                                <String fx:value="Conditional Approval"/>
-                            </items>
                         </ComboBox>
                         <Button fx:id="enterFindingsButton" onAction="#handleEnterFindings" text="Enter Findings"/>
                     </children>

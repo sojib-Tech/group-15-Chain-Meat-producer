@@ -65,11 +65,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 5: Submit Approval Decision"/>
                         <ComboBox fx:id="approvalDecisionComboBox" promptText="Approval Decision">
-                            <items>
-                                <String fx:value="Approved for Dispatch"/>
-                                <String fx:value="Conditional Approval"/>
-                                <String fx:value="Rejected"/>
-                            </items>
                         </ComboBox>
                         <TextArea fx:id="decisionReasonsArea" prefRowCount="3" promptText="Decision reasons..."/>
                         <Button fx:id="submitDecisionButton" onAction="#handleSubmitDecision" text="Submit Decision"/>

@@ -62,11 +62,6 @@
                     <children>
                         <Label style="-fx-font-weight: bold;" text="Step 5: Submit Compliance Result"/>
                         <ComboBox fx:id="complianceStatusComboBox" promptText="Compliance Status">
-                            <items>
-                                <String fx:value="Compliant"/>
-                                <String fx:value="Non-Compliant"/>
-                                <String fx:value="Requires Review"/>
-                            </items>
                         </ComboBox>
                         <TextArea fx:id="complianceNotesArea" prefRowCount="2" promptText="Compliance notes..."/>
                         <Button fx:id="submitComplianceButton" onAction="#handleSubmitCompliance" text="Submit Result"/>
@@ -80,11 +75,6 @@
                         <TextArea fx:id="nonConformityDetailsArea" prefRowCount="3"
                                   promptText="Non-conformity details..."/>
                         <ComboBox fx:id="severityComboBox" promptText="Severity Level">
-                            <items>
-                                <String fx:value="Critical"/>
-                                <String fx:value="Major"/>
-                                <String fx:value="Minor"/>
-                            </items>
                         </ComboBox>
                         <Button fx:id="flagNonConformityButton" onAction="#handleFlagNonConformity"
                                 text="Flag for Review"/>
