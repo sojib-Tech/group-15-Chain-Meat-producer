@@ -2,6 +2,7 @@ module com.example.group15chainmeatproducer {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.base;
 
 
     opens com.example.group15chainmeatproducer to javafx.fxml;

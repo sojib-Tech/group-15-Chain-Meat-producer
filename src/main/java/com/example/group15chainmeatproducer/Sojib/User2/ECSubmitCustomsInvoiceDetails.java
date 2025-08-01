@@ -1,5 +1,9 @@
 package com.example.group15chainmeatproducer.Sojib.User2;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
 public class ECSubmitCustomsInvoiceDetails
 {
     @javafx.fxml.FXML
