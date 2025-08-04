@@ -7,40 +7,23 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.group15chainmeatproducer.LoginController"
-            prefHeight="450.0" prefWidth="600.0">
+            prefHeight="300.0" prefWidth="500.0">
 
-    <VBox alignment="CENTER" spacing="20.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="150.0"
-          AnchorPane.rightAnchor="150.0">
+    <VBox alignment="CENTER" spacing="30.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="100.0"
+          AnchorPane.rightAnchor="100.0">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
         </padding>
 
-        <Label text="Login" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+        <Label text="Meat Producer&#10;Login Page"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333; -fx-text-alignment: center;"/>
 
-        <VBox spacing="10.0">
-            <Label text="ID Number:"/>
-            <TextField fx:id="idNumberField" promptText="Enter your ID number"/>
-        </VBox>
+        <VBox spacing="15.0" alignment="CENTER">
+            <ComboBox fx:id="userTypeComboBox" prefWidth="250.0" promptText="Choose your role..."
+                      style="-fx-font-size: 14px;" maxWidth="250.0"/>
 
-        <VBox spacing="10.0">
-            <Label text="User Type:"/>
-            <ComboBox fx:id="userTypeComboBox" prefWidth="200.0" promptText="Select user type"/>
-        </VBox>
-
-        <VBox spacing="10.0">
-            <Label text="Password:"/>
-            <PasswordField fx:id="passwordField" promptText="Enter your password"/>
-        </VBox>
-
-        <Button fx:id="loginButton" text="Login" onAction="#handleLogin" prefWidth="150.0"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"/>
-
-        <Separator prefWidth="200.0"/>
-
-        <VBox alignment="CENTER" spacing="10.0">
-            <Label text="Don't have an account?" style="-fx-font-size: 12px;"/>
-            <Button fx:id="signUpButton" text="Sign Up" onAction="#handleSignUp" prefWidth="100.0"
-                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 12px;"/>
+            <Button fx:id="confirmButton" text="Confirm" onAction="#handleConfirm" prefWidth="150.0" prefHeight="40.0"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
         </VBox>
     </VBox>
 
