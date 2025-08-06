@@ -29,7 +29,7 @@
 
                 <Button onAction="#goal3OnAction" prefHeight="80.0" prefWidth="300.0" text="3. Input Destination and Client Name" GridPane.rowIndex="1" />
 
-                <Button fx:id="goal4Button" onAction="#goal4OnAction" prefHeight="80.0" prefWidth="300.0" text="4. Submit Customs Invoice Details" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button onAction="#goal4OnAction" prefHeight="80.0" prefWidth="300.0" text="4. Submit Customs Invoice Details" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                 <Button onAction="#goal5OnAction" prefHeight="80.0" prefWidth="300.0" text="5. Choose Logistics Partner" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 

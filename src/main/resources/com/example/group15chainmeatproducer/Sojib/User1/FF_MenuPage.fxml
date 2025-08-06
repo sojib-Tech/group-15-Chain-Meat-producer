@@ -23,11 +23,9 @@
 
         <GridPane hgap="20" vgap="20">
             <children>
-                <Button onAction="#goal1OnAction" prefHeight="80.0" prefWidth="300.0" text="1. Scan Animal ID Before Slaughter" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Button onAction="#goal1OnAction" prefHeight="80.0" prefWidth="300.0" text="2. Scan Animal ID Before Slaughter" GridPane.columnIndex="1" />
 
-                <Button onAction="#goal2OnAction" prefHeight="80.0" prefWidth="300.0" text="2. Upload Hygiene Checklist" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-                <Button onAction="#goal3OnAction" prefHeight="80.0" prefWidth="300.0" text="3. Confirm Meat Cutting Machine Calibration" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <Button onAction="#goal3OnAction" prefHeight="80.0" prefWidth="300.0" text="3. Machine Calibration booking" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
                 <Button onAction="#goal4OnAction" prefHeight="80.0" prefWidth="300.0" text="4. Input Number of Cut Meat Pieces" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
@@ -38,6 +36,8 @@
                 <Button onAction="#goal7OnAction" prefHeight="80.0" prefWidth="300.0" text="7. Record Cold Storage Entry Time" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 
                 <Button onAction="#goal8OnAction" prefHeight="80.0" prefWidth="300.0" text="8. Mark Shift Handover" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Button onAction="#goal2OnAction" prefHeight="80.0" prefWidth="300.0" text="1. Add Animal Import Details" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="10.0" />

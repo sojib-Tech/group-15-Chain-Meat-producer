@@ -1,7 +1,8 @@
 package com.example.group15chainmeatproducer.Sojib.User2;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class ECChooseLogisticsPartner
 {

@@ -1,9 +1,16 @@
 package com.example.group15chainmeatproducer.Sojib.User2;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import com.example.group15chainmeatproducer.SceneManager;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ECMenuController {
 
@@ -66,34 +73,59 @@ public class ECMenuController {
     }
 
     @FXML
-    public void goal4OnAction(ActionEvent actionEvent) {
+    public void goal1OnAction(ActionEvent actionEvent)  throws IOException{
+            System.out.println("Navigate to Goal 1: Select Pending Export Order");
+            Parent root = FXMLLoader.load(getClass().getResource("9.EC Select Pending Export Order.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
     }
 
     @FXML
-    public void goal8OnAction(ActionEvent actionEvent) {
+    public void goal8OnAction(ActionEvent actionEvent) throws IOException{
     }
 
     @FXML
-    public void goal6OnAction(ActionEvent actionEvent) {
+    public void goal6OnAction(ActionEvent actionEvent) throws IOException{
     }
 
     @FXML
-    public void goal3OnAction(ActionEvent actionEvent) {
+    public void goal3OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 3: Submit Customs Invoice Details");
+        Parent root = FXMLLoader.load(getClass().getResource("12.EC Submit Customs Invoice Details.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void goal2OnAction(ActionEvent actionEvent) {
+    public void goal2OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 2: Confirm Consignment Weight and Quantity");
+        Parent root = FXMLLoader.load(getClass().getResource("10.EC Confirm Consignment Weight and Quantity.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    public void goal1OnAction(ActionEvent actionEvent) {
+    public void goal4OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 4: Choose Logistics Partner");
+        Parent root = FXMLLoader.load(getClass().getResource("13.EC Choose Logistics Partner.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @FXML
-    public void goal5OnAction(ActionEvent actionEvent) {
+    public void goal5OnAction(ActionEvent actionEvent) throws IOException{
     }
 
     @FXML
-    public void goal7OnAction(ActionEvent actionEvent) {
+    public void goal7OnAction(ActionEvent actionEvent) throws IOException{
     }
 }

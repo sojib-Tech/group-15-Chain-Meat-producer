@@ -1,17 +1,16 @@
 package com.example.group15chainmeatproducer.Sojib.User1;
 
+import com.example.group15chainmeatproducer.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import com.example.group15chainmeatproducer.SceneManager;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.EventObject;
 
 public class FFMenuController {
 
@@ -111,7 +110,7 @@ public class FFMenuController {
     @FXML
     public void goal2OnAction(ActionEvent actionEvent) throws IOException {
         System.out.println("Navigate to Goal 2: Upload Hygiene Checklist");
-        Parent root = FXMLLoader.load(getClass().getResource("2.FFUpload Hygiene Checklist.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("2.FFcheckIn.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
