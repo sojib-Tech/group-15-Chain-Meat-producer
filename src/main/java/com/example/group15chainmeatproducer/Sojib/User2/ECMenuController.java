@@ -84,16 +84,28 @@ public class ECMenuController {
 
     @FXML
     public void goal8OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 8: Upload Delivery Confirmation");
+        Parent root = FXMLLoader.load(getClass().getResource("16.EC Upload Signed Delivery Confirmation.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void goal6OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 6: Input Dispatch");
+        Parent root = FXMLLoader.load(getClass().getResource("14.EC Input Dispatch.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void goal3OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 3: Submit Customs Invoice Details");
-        Parent root = FXMLLoader.load(getClass().getResource("12.EC Submit Customs Invoice Details.fxml"));
+        System.out.println("Navigate to Goal 3: Input Destination and Client Name");
+        Parent root = FXMLLoader.load(getClass().getResource("goal_11_input destination.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -112,8 +124,8 @@ public class ECMenuController {
 
     @FXML
     public void goal4OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 4: Choose Logistics Partner");
-        Parent root = FXMLLoader.load(getClass().getResource("13.EC Choose Logistics Partner.fxml"));
+        System.out.println("Navigate to Goal 4: Submit Customs Invoice Details");
+        Parent root = FXMLLoader.load(getClass().getResource("12.EC Submit Customs Invoice Details.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -123,9 +135,21 @@ public class ECMenuController {
 
     @FXML
     public void goal5OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 5: Choose Logistics Partner");
+        Parent root = FXMLLoader.load(getClass().getResource("13.EC Choose Logistics Partner.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     public void goal7OnAction(ActionEvent actionEvent) throws IOException{
+        System.out.println("Navigate to Goal 7: Confirm Export Clearance");
+        Parent root = FXMLLoader.load(getClass().getResource("15.EC Confirm Export Clearance via Customs Portal.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

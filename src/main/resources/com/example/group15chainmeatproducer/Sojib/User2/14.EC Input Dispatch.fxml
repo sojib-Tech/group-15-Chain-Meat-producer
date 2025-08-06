@@ -11,4 +11,19 @@
             fx:controller="com.example.group15chainmeatproducer.Sojib.User2.ECInputDispatch"
             prefHeight="400.0" prefWidth="600.0">
 
+    <children>
+        <Label layoutX="250.0" layoutY="20.0" text="Input Dispatch Details"
+               style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+        <TextField layoutX="50.0" layoutY="80.0" promptText="Dispatch Number" prefWidth="200.0"/>
+        <DatePicker layoutX="350.0" layoutY="80.0" promptText="Dispatch Date"/>
+
+        <TextField layoutX="50.0" layoutY="130.0" promptText="Vehicle Info" prefWidth="200.0"/>
+        <TextField layoutX="350.0" layoutY="130.0" promptText="Driver Name" prefWidth="200.0"/>
+
+        <Button layoutX="250.0" layoutY="200.0" text="Submit Dispatch" prefWidth="120.0"/>
+
+        <Button fx:id="btnBack" layoutX="50.0" layoutY="350.0" text="Back"
+                onAction="#handleBack" prefWidth="80.0"/>
+    </children>
 </AnchorPane>
