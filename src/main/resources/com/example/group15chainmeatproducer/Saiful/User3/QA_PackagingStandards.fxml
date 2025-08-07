@@ -2,92 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAPackagingStandardsController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Packaging Standards Approval" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
             <children>
-                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Approve Packaging Standards"/>
+                <Label text="Packaging Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Approval Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Package Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <RadioButton text="Approved"/>
+                        <RadioButton text="Rejected"/>
+                    </children>
+                </VBox>
+
+                <Label text="Label/Seal Check:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Photo Path:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                    <columns>
+                        <TableColumn text="Batch ID"/>
+                        <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Photo"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <children>
+                        <Button text="Upload Photo"/>
+                        <Button text="Approve"/>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                    </children>
+                </HBox>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
-
-        <VBox spacing="15">
-            <children>
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 1: Visit Packaging QA Panel"/>
-                        <Button fx:id="visitPanelButton" onAction="#handleVisitPanel" text="Visit QA Panel"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Active Packaging Batch"/>
-                        <ComboBox fx:id="packagingBatchComboBox" promptText="Select Packaging Batch"/>
-                        <Button fx:id="selectBatchButton" onAction="#handleSelectBatch" text="Select Batch"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;"
-                               text="Step 3: Check Label Accuracy &amp; Sealing Quality"/>
-                        <CheckBox fx:id="labelAccuracyBox" text="Label accuracy verified"/>
-                        <CheckBox fx:id="sealingQualityBox" text="Sealing quality verified"/>
-                        <CheckBox fx:id="barcodeBox" text="Barcode scanning verified"/>
-                        <CheckBox fx:id="expiryDateBox" text="Expiry date accuracy verified"/>
-                        <Button fx:id="checkQualityButton" onAction="#handleCheckQuality"
-                                text="Complete Quality Check"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 4: Document Findings"/>
-                        <TextArea fx:id="findingsArea" prefRowCount="4" promptText="Document packaging findings..."/>
-                        <Button fx:id="documentButton" onAction="#handleDocument" text="Document Findings"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 5: Upload Tray/Package Photo"/>
-                        <Button fx:id="uploadPhotoButton" onAction="#handleUploadPhoto" text="Upload Photo"/>
-                        <Label fx:id="photoStatusLabel" text="No photo uploaded"/>
-                        <TextArea fx:id="photoDescriptionArea" prefRowCount="2" promptText="Photo description..."/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 6: Approve or Reject Batch for Dispatch"/>
-                        <ComboBox fx:id="decisionComboBox" promptText="Batch Decision">
-                        </ComboBox>
-                        <TextArea fx:id="decisionReasonArea" prefRowCount="2" promptText="Reason for decision..."/>
-                        <Button fx:id="makeDecisionButton" onAction="#handleMakeDecision" text="Submit Decision"/>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </VBox>
-
-        <HBox alignment="CENTER" spacing="20">
-            <children>
-                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
-                <Button fx:id="completeButton" onAction="#handleComplete"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Review"/>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
+        </GridPane>
     </children>
 </VBox>

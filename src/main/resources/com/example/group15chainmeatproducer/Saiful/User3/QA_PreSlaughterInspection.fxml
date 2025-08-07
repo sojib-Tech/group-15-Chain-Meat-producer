@@ -2,97 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.group15chainmeatproducer.Saiful.QAPreSlaughterInspectionController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Pre-Slaughter Animal Inspection" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
             <children>
-                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Pre-Slaughter Animal Inspection"/>
+                <Label text="Animal ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Inspection Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Visual Check Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <RadioButton text="Pass"/>
+                        <RadioButton text="Fail"/>
+                    </children>
+                </VBox>
+
+                <Label text="Health Findings:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Inspector Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                    <columns>
+                        <TableColumn text="Animal ID"/>
+                        <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Findings"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <children>
+                        <Button text="Submit Inspection"/>
+                        <Button text="Notify Supervisor"/>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                    </children>
+                </HBox>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
-
-        <VBox spacing="15">
-            <children>
-                <!-- Event 1: Access animal inspection module -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 1: Access Animal Inspection Module"/>
-                        <Button fx:id="accessModuleButton" onAction="#handleAccessModule"
-                                text="Access Inspection Module"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 2: Select animal ID from queue -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Animal ID from Queue"/>
-                        <ComboBox fx:id="animalIdComboBox" promptText="Select Animal ID"/>
-                        <Button fx:id="selectAnimalButton" onAction="#handleSelectAnimal" text="Select Animal"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 3: Conduct visual & health check -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 3: Conduct Visual &amp; Health Check"/>
-                        <TextArea fx:id="visualCheckArea" prefRowCount="3"
-                                  promptText="Enter visual inspection notes..."/>
-                        <TextArea fx:id="healthCheckArea" prefRowCount="3"
-                                  promptText="Enter health check observations..."/>
-                        <Button fx:id="conductCheckButton" onAction="#handleConductCheck" text="Complete Check"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 4: Enter findings in inspection form -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 4: Enter Findings in Inspection Form"/>
-                        <TextArea fx:id="findingsArea" prefRowCount="4" promptText="Enter detailed findings..."/>
-                        <ComboBox fx:id="statusComboBox" promptText="Select Status">
-                        </ComboBox>
-                        <Button fx:id="enterFindingsButton" onAction="#handleEnterFindings" text="Enter Findings"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 5: Submit inspection status -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 5: Submit Inspection Status"/>
-                        <Button fx:id="submitStatusButton" onAction="#handleSubmitStatus" text="Submit Status"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 6: Notify factory supervisor -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 6: Notify Factory Supervisor"/>
-                        <TextArea fx:id="notificationArea" prefRowCount="2"
-                                  promptText="Additional notes for supervisor..."/>
-                        <Button fx:id="notifySupervisorButton" onAction="#handleNotifySupervisor"
-                                text="Notify Supervisor"/>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </VBox>
-
-        <HBox alignment="CENTER" spacing="20">
-            <children>
-                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
-                <Button fx:id="completeButton" onAction="#handleComplete"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Inspection"/>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
+        </GridPane>
     </children>
 </VBox>

@@ -2,92 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMMonthlyReportsController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Monthly Stock Reports Generation" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
             <children>
-                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Generate Monthly Stock Reports"/>
+                <Label text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Report Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Export Format:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <RadioButton text="Excel"/>
+                        <RadioButton text="PDF"/>
+                    </children>
+                </VBox>
+
+                <Label text="Category Filter:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Date Filter:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                    <columns>
+                        <TableColumn text="Report Type"/>
+                        <TableColumn text="Category"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Status"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <children>
+                        <Button text="Generate Report"/>
+                        <Button text="Share Report"/>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                    </children>
+                </HBox>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
-
-        <VBox spacing="15">
-            <children>
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 1: Access Report Generator"/>
-                        <Button fx:id="accessGeneratorButton" onAction="#handleAccessGenerator"
-                                text="Access Generator"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 2: Choose Report Type (stock balance)"/>
-                        <ComboBox fx:id="reportTypeComboBox" promptText="Select Report Type"/>
-                        <Button fx:id="chooseTypeButton" onAction="#handleChooseType" text="Choose Type"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 3: Set Filters (category/date)"/>
-                        <ComboBox fx:id="categoryFilterComboBox" promptText="Select Category"/>
-                        <DatePicker fx:id="startDatePicker" promptText="Start Date"/>
-                        <DatePicker fx:id="endDatePicker" promptText="End Date"/>
-                        <Button fx:id="setFiltersButton" onAction="#handleSetFilters" text="Set Filters"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 4: Export to Excel/PDF"/>
-                        <ComboBox fx:id="exportFormatComboBox" promptText="Export Format">
-                        </ComboBox>
-                        <Button fx:id="exportButton" onAction="#handleExport" text="Export Report"/>
-                        <Label fx:id="exportStatusLabel" text="No report exported"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 5: Review for Anomalies"/>
-                        <TextArea fx:id="anomaliesArea" prefRowCount="4" promptText="Review report for anomalies..."/>
-                        <Button fx:id="reviewAnomaliesButton" onAction="#handleReviewAnomalies"
-                                text="Review Anomalies"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 6: Share with Finance/Logistics"/>
-                        <CheckBox fx:id="shareFinanceBox" text="Share with Finance"/>
-                        <CheckBox fx:id="shareLogisticsBox" text="Share with Logistics"/>
-                        <TextArea fx:id="shareNotesArea" prefRowCount="2" promptText="Sharing notes..."/>
-                        <Button fx:id="shareReportButton" onAction="#handleShareReport" text="Share Report"/>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </VBox>
-
-        <HBox alignment="CENTER" spacing="20">
-            <children>
-                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
-                <Button fx:id="completeButton" onAction="#handleComplete"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Report"/>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
+        </GridPane>
     </children>
 </VBox>

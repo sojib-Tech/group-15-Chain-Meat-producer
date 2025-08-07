@@ -2,91 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMWeeklyAuditController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Weekly Inventory Audit" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
             <children>
-                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Conduct Weekly Inventory Audit"/>
+                <Label text="Audit Category:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Audit Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Stock Count Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <RadioButton text="Match"/>
+                        <RadioButton text="Variance"/>
+                    </children>
+                </VBox>
+
+                <Label text="Manual Count:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Photo Path:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                    <columns>
+                        <TableColumn text="Category"/>
+                        <TableColumn text="Count"/>
+                        <TableColumn text="Variance"/>
+                        <TableColumn text="Date"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <children>
+                        <Button text="Attach Photo"/>
+                        <Button text="Submit Report"/>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                    </children>
+                </HBox>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
-
-        <VBox spacing="15">
-            <children>
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 1: Download Last Audit Report"/>
-                        <Button fx:id="downloadReportButton" onAction="#handleDownloadReport" text="Download Report"/>
-                        <Label fx:id="downloadStatusLabel" text="No report downloaded"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 2: Begin Manual Stock Count"/>
-                        <TextArea fx:id="stockCountArea" prefRowCount="4" promptText="Manual stock count details..."/>
-                        <Button fx:id="beginCountButton" onAction="#handleBeginCount" text="Begin Count"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 3: Log Data into Audit Module"/>
-                        <TextField fx:id="itemCodeField" promptText="Item Code"/>
-                        <TextField fx:id="countedQuantityField" promptText="Counted Quantity"/>
-                        <TextField fx:id="systemQuantityField" promptText="System Quantity"/>
-                        <Button fx:id="logDataButton" onAction="#handleLogData" text="Log Data"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 4: Highlight Variances"/>
-                        <TextArea fx:id="variancesArea" prefRowCount="3" promptText="Variance details..."/>
-                        <TextField fx:id="variancePercentageField" promptText="Variance Percentage"/>
-                        <Button fx:id="highlightVariancesButton" onAction="#handleHighlightVariances"
-                                text="Highlight Variances"/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 5: Attach Photos (optional)"/>
-                        <Button fx:id="attachPhotosButton" onAction="#handleAttachPhotos" text="Attach Photos"/>
-                        <Label fx:id="photoStatusLabel" text="No photos attached"/>
-                        <TextArea fx:id="photoDescriptionArea" prefRowCount="2" promptText="Photo descriptions..."/>
-                    </children>
-                </VBox>
-
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 6: Submit Audit Report"/>
-                        <TextArea fx:id="auditSummaryArea" prefRowCount="3" promptText="Audit summary..."/>
-                        <TextField fx:id="auditorSignatureField" promptText="Auditor Signature"/>
-                        <Button fx:id="submitAuditButton" onAction="#handleSubmitAudit" text="Submit Report"/>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </VBox>
-
-        <HBox alignment="CENTER" spacing="20">
-            <children>
-                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
-                <Button fx:id="completeButton" onAction="#handleComplete"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Audit"/>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
+        </GridPane>
     </children>
 </VBox>

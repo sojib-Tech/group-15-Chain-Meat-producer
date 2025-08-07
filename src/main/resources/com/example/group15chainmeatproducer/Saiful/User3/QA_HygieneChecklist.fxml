@@ -2,106 +2,56 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.QAHygieneChecklistController">
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAHygieneChecklistController">
     <children>
-        <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Hygiene Checklist Verification" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
             <children>
-                <Button fx:id="backButton" onAction="#handleBack" text="← Back"/>
-                <Label style="-fx-font-size: 18px; -fx-font-weight: bold;"
-                       text="Verify Hygiene Checklist Post-Cleaning"/>
+                <Label text="Cleaning Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="cleaningBatchComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                <Label text="Verification Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                <Label text="Checklist Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <children>
+                        <RadioButton text="Complete"/>
+                        <RadioButton text="Incomplete"/>
+                    </children>
+                </VBox>
+
+                <Label text="Photo Upload:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+                <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                    <columns>
+                        <TableColumn text="Batch ID"/>
+                        <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Photo"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
+                    <children>
+                        <Button text="Upload Photo"/>
+                        <Button text="Submit Report"/>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                    </children>
+                </HBox>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
-
-        <VBox spacing="15">
-            <children>
-                <!-- Event 1: Login to hygiene system -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 1: Login to Hygiene System"/>
-                        <TextField fx:id="systemUsernameField" promptText="System Username"/>
-                        <PasswordField fx:id="systemPasswordField" promptText="System Password"/>
-                        <Button fx:id="loginSystemButton" onAction="#handleLoginSystem" text="Login to System"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 2: Select relevant cleaning batch -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 2: Select Relevant Cleaning Batch"/>
-                        <ComboBox fx:id="cleaningBatchComboBox" promptText="Select Cleaning Batch"/>
-                        <Button fx:id="selectBatchButton" onAction="#handleSelectBatch" text="Select Batch"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 3: Review auto-generated sanitation checklist -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;"
-                               text="Step 3: Review Auto-Generated Sanitation Checklist"/>
-                        <ListView fx:id="checklistListView" prefHeight="150"/>
-                        <Button fx:id="reviewChecklistButton" onAction="#handleReviewChecklist"
-                                text="Review Checklist"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 4: Confirm item-by-item verification -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 4: Confirm Item-by-Item Verification"/>
-                        <TextArea fx:id="verificationNotesArea" prefRowCount="4"
-                                  promptText="Enter verification notes for each item..."/>
-                        <CheckBox fx:id="item1CheckBox" text="Floor cleaning verified"/>
-                        <CheckBox fx:id="item2CheckBox" text="Equipment sanitization verified"/>
-                        <CheckBox fx:id="item3CheckBox" text="Wall cleaning verified"/>
-                        <CheckBox fx:id="item4CheckBox" text="Drain cleaning verified"/>
-                        <CheckBox fx:id="item5CheckBox" text="Temperature logs verified"/>
-                        <Button fx:id="confirmVerificationButton" onAction="#handleConfirmVerification"
-                                text="Confirm All Items"/>
-                    </children>
-                </VBox>
-
-                <!-- Event 5: Upload photographic proof -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 5: Upload Photographic Proof"/>
-                        <Button fx:id="uploadPhotoButton" onAction="#handleUploadPhoto" text="Upload Photos"/>
-                        <Label fx:id="photoStatusLabel" text="No photos uploaded"/>
-                        <TextArea fx:id="photoDescriptionArea" prefRowCount="2"
-                                  promptText="Describe uploaded photos..."/>
-                    </children>
-                </VBox>
-
-                <!-- Event 6: Submit report to compliance log -->
-                <VBox spacing="10">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Step 6: Submit Report to Compliance Log"/>
-                        <TextArea fx:id="complianceNotesArea" prefRowCount="3"
-                                  promptText="Additional compliance notes..."/>
-                        <Button fx:id="submitReportButton" onAction="#handleSubmitReport"
-                                text="Submit to Compliance Log"/>
-                    </children>
-                </VBox>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </VBox>
-
-        <HBox alignment="CENTER" spacing="20">
-            <children>
-                <Button fx:id="resetButton" onAction="#handleReset" text="Reset Form"/>
-                <Button fx:id="completeButton" onAction="#handleComplete"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Complete Verification"/>
-            </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-        </HBox>
+        </GridPane>
     </children>
 </VBox>
