@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.Customer.BrowseProductController"
+            prefHeight="600.0" prefWidth="900.0">
+    <VBox spacing="10.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <Label text="Available Products" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <TextField fx:id="searchField" promptText="Search products..."/>
+        <TableView fx:id="productTable" prefHeight="480.0">
+            <columns>
+                <TableColumn fx:id="imageColumn" text="Image" prefWidth="120.0"/>
+                <TableColumn fx:id="nameColumn" text="Product Name" prefWidth="200.0"/>
+                <TableColumn fx:id="priceColumn" text="Price" prefWidth="120.0"/>
+                <TableColumn fx:id="descriptionColumn" text="Short Description" prefWidth="420.0"/>
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER_RIGHT">
+            <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.Customer.ViewProductDetailsController"
+            prefHeight="700.0" prefWidth="1000.0">
+    <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="deliveryGroup"/>
+        </fx:define>
+        <Label text="Product Details" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+        <HBox spacing="15.0">
+            <ImageView fx:id="productImageView" fitWidth="300.0" fitHeight="300.0" preserveRatio="true"/>
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
+                <TextField fx:id="productNameField" promptText="Product name"/>
+                <TextField fx:id="quantityField" promptText="Quantity"/>
+                <ComboBox fx:id="variantComboBox" promptText="Select variant"/>
+                <HBox spacing="10.0">
+                    <RadioButton fx:id="homeDeliveryRadio" text="Home Delivery" toggleGroup="$deliveryGroup"/>
+                    <RadioButton fx:id="pickupRadio" text="Pickup" toggleGroup="$deliveryGroup"/>
+                </HBox>
+                <DatePicker fx:id="deliveryDatePicker" promptText="Select delivery/pickup date"/>
+                <HBox spacing="10.0">
+                    <Button fx:id="addToCartButton" text="Add to Cart" onAction="#handleAddToCart"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack"/>
+                </HBox>
+            </VBox>
+        </HBox>
+        <Label text="Reviews / Specifications" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <TableView fx:id="reviewsTable" prefHeight="280.0">
+            <columns>
+                <TableColumn fx:id="reviewerColumn" text="Reviewer Name" prefWidth="200.0"/>
+                <TableColumn fx:id="ratingColumn" text="Rating" prefWidth="120.0"/>
+                <TableColumn fx:id="commentColumn" text="Comment" prefWidth="640.0"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

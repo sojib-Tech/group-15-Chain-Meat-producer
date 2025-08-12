@@ -54,10 +54,10 @@ public class LoginController {
                 SceneManager.switchToUser4Menu(event);
                 break;
             case "Customer":
-                System.out.println("Customer dashboard - Not implemented yet");
+                SceneManager.switchToCustomerMenu(event);
                 break;
             case "Customer Service Representative":
-                System.out.println("Customer Service Representative dashboard - Not implemented yet");
+                SceneManager.switchToCSRMenu(event);
                 break;
             default:
                 System.out.println("Invalid user type selected!");

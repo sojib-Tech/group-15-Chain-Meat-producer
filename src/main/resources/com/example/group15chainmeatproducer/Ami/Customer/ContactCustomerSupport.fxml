@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.Customer.ContactCustomerSupportController"
+            prefHeight="650.0" prefWidth="1000.0">
+    <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="contactMethodGroup"/>
+        </fx:define>
+        <Label text="Contact Customer Support" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <TextField fx:id="nameField" promptText="Your name"/>
+        <TextField fx:id="emailField" promptText="Your email"/>
+        <ComboBox fx:id="categoryComboBox" promptText="Select query category"/>
+        <HBox spacing="10.0">
+            <RadioButton fx:id="emailReplyRadio" text="Email Reply" toggleGroup="$contactMethodGroup"/>
+            <RadioButton fx:id="phoneCallRadio" text="Phone Call" toggleGroup="$contactMethodGroup"/>
+        </HBox>
+        <DatePicker fx:id="callbackDatePicker" promptText="Preferred callback date (optional)"/>
+        <Label text="Previous Tickets" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <TableView fx:id="ticketsTable" prefHeight="260.0">
+            <columns>
+                <TableColumn fx:id="ticketIdColumn" text="Ticket ID" prefWidth="200.0"/>
+                <TableColumn fx:id="ticketDateColumn" text="Date" prefWidth="200.0"/>
+                <TableColumn fx:id="ticketStatusColumn" text="Status" prefWidth="200.0"/>
+            </columns>
+        </TableView>
+        <TextField fx:id="messageField" promptText="Your message"/>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button fx:id="sendButton" text="Send Message"/>
+            <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

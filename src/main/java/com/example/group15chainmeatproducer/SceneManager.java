@@ -319,4 +319,32 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    public static void switchToCustomerMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Ami/Customer/MenuCustomer.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Customer Menu");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchToCSRMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Ami/CustomerServiceRepresentative/MenuCustomerService.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Customer Service Representative Dashboard");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

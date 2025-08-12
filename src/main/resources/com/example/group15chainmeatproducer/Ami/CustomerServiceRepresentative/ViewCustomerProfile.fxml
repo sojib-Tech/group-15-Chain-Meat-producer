@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative.ViewCustomerProfileController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="statusGroup"/>
+    </fx:define>
+
+    <children>
+        <VBox spacing="10.0" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            <children>
+                <Label text="Customer Profile" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <TextField fx:id="nameField" promptText="Customer Name"/>
+                <TextField fx:id="addressField" promptText="Address"/>
+                <TextField fx:id="phoneField" promptText="Phone Number"/>
+
+                <ComboBox fx:id="categoryCombo" promptText="Customer Category (e.g., Regular, VIP)"/>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <RadioButton fx:id="activeRadio" text="Active" toggleGroup="$statusGroup"/>
+                        <RadioButton fx:id="inactiveRadio" text="Inactive" toggleGroup="$statusGroup"/>
+                    </children>
+                </HBox>
+
+                <DatePicker fx:id="datePicker" promptText="Registration Date / Last Order Date"/>
+
+                <Label text="Previous Orders" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TableView fx:id="ordersTable" prefHeight="350.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="orderIdCol" text="Order ID" prefWidth="200.0">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="orderId"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="orderDateCol" text="Order Date" prefWidth="200.0">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="orderDate"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="statusCol" text="Status" prefWidth="200.0">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="status"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button fx:id="createProfileButton" text="Create Customer Profile"/>
+                        <Button fx:id="backButton" text="Back to Dashboard" onAction="#handleBack"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

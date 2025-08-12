@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.Customer.CheckoutPlaceOrderController"
+            prefHeight="650.0" prefWidth="1000.0">
+    <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="paymentTypeGroup"/>
+        </fx:define>
+        <Label text="Checkout &amp; Place Order" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <TextField fx:id="deliveryAddressField" promptText="Delivery address"/>
+        <TextField fx:id="contactNumberField" promptText="Contact number"/>
+        <ComboBox fx:id="paymentMethodComboBox" promptText="Select payment method"/>
+        <HBox spacing="10.0">
+            <RadioButton fx:id="fullPaymentRadio" text="Full Payment" toggleGroup="$paymentTypeGroup"/>
+            <RadioButton fx:id="partialPaymentRadio" text="Partial Payment" toggleGroup="$paymentTypeGroup"/>
+        </HBox>
+        <DatePicker fx:id="preferredDatePicker" promptText="Preferred delivery date"/>
+        <TableView fx:id="orderTable" prefHeight="350.0">
+            <columns>
+                <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="340.0"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="120.0"/>
+                <TableColumn fx:id="priceColumn" text="Price" prefWidth="160.0"/>
+                <TableColumn fx:id="subtotalColumn" text="Subtotal" prefWidth="200.0"/>
+            </columns>
+        </TableView>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button fx:id="placeOrderButton" text="Place Order" onAction="#handlePlaceOrder"/>
+            <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

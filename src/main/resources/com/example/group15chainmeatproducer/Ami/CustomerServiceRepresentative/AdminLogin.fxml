@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative.AdminLoginController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="loginOptionsGroup"/>
+    </fx:define>
+
+    <children>
+        <VBox alignment="TOP_CENTER" spacing="10.0"
+              AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            <children>
+                <Label text="Admin Login" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <TextField fx:id="usernameField" promptText="Username"/>
+                <PasswordField fx:id="passwordField" promptText="Password"/>
+
+                <ComboBox fx:id="roleComboBox" promptText="Select role"/>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <RadioButton fx:id="rememberMeRadio" text="Remember Me" toggleGroup="$loginOptionsGroup"/>
+                        <RadioButton fx:id="forgotPasswordRadio" text="Forgot Password"
+                                     toggleGroup="$loginOptionsGroup"/>
+                    </children>
+                </HBox>
+
+                <DatePicker fx:id="lastLoginDatePicker" promptText="Select date"/>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                        <Button fx:id="loginButton" text="Login" defaultButton="true"/>
+                    </children>
+                </HBox>
+
+                <TableView fx:id="loginAttemptsTable" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn text="Date" prefWidth="150.0"/>
+                        <TableColumn text="Username" prefWidth="250.0"/>
+                        <TableColumn text="Status" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

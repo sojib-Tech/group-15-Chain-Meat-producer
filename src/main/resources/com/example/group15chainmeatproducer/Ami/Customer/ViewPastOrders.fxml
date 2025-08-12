@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.Customer.ViewPastOrdersController"
+            prefHeight="650.0" prefWidth="1000.0">
+    <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <fx:define>
+            <ToggleGroup fx:id="quickRangeGroup"/>
+        </fx:define>
+        <Label text="My Orders" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <TextField fx:id="searchField" promptText="Search by Order ID or keyword"/>
+        <ComboBox fx:id="statusComboBox" promptText="Filter by status"/>
+        <HBox spacing="10.0">
+            <RadioButton fx:id="last30DaysRadio" text="Last 30 Days" toggleGroup="$quickRangeGroup"
+                         onAction="#handleQuickRange"/>
+            <RadioButton fx:id="last6MonthsRadio" text="Last 6 Months" toggleGroup="$quickRangeGroup"
+                         onAction="#handleQuickRange"/>
+        </HBox>
+        <HBox spacing="10.0">
+            <DatePicker fx:id="fromDatePicker" promptText="From date"/>
+            <DatePicker fx:id="toDatePicker" promptText="To date"/>
+        </HBox>
+        <TableView fx:id="ordersTable" prefHeight="360.0">
+            <columns>
+                <TableColumn fx:id="dateColumn" text="Order Date" prefWidth="200.0"/>
+                <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="180.0"/>
+                <TableColumn fx:id="itemsSummaryColumn" text="Items Summary" prefWidth="420.0"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="160.0"/>
+            </columns>
+        </TableView>
+        <HBox spacing="10.0" alignment="CENTER_RIGHT">
+            <Button fx:id="viewDetailsButton" text="View Details" onAction="#handleViewDetails"/>
+            <Button fx:id="backButton" text="Back to Menu" onAction="#handleBack"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

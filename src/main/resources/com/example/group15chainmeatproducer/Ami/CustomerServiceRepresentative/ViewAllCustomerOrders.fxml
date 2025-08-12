@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative.ViewAllCustomerOrdersController"
+            prefHeight="600.0" prefWidth="900.0">
+
+    <fx:define>
+        <ToggleGroup fx:id="dateQuickFilterGroup"/>
+    </fx:define>
+
+    <children>
+        <VBox spacing="10.0" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"
+              AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            <children>
+                <Label text="All Customer Orders" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+                <TextField fx:id="searchField" promptText="Search by customer name or order ID"/>
+
+                <ComboBox fx:id="statusFilter" promptText="Filter by status"/>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <RadioButton fx:id="todayRadio" text="Today" toggleGroup="$dateQuickFilterGroup"/>
+                        <RadioButton fx:id="last7DaysRadio" text="Last 7 Days" toggleGroup="$dateQuickFilterGroup"/>
+                    </children>
+                </HBox>
+
+                <DatePicker fx:id="dateFilter" promptText="Select date"/>
+
+                <TableView fx:id="ordersTable" prefHeight="400.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="150.0"/>
+                        <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="200.0"/>
+                        <TableColumn fx:id="itemsSummaryColumn" text="Items Summary" prefWidth="350.0"/>
+                        <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Button fx:id="viewDetailsButton" text="View Details"/>
+                        <Button fx:id="backButton" text="Back to Dashboard" onAction="#handleBack"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
