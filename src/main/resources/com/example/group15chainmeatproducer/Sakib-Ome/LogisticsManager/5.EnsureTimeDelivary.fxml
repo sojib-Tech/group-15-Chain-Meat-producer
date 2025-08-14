@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.RawMaterialDeliveryController"
+            prefHeight="700.0" prefWidth="1000.0">
+    <children>
+        <Label text="Raw Material Delivery Tracking"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="New Delivery Entry" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="supplierNameField" promptText="Supplier Name"/>
+                        <TextField fx:id="materialTypeField" promptText="Material Type"/>
+                        <TextField fx:id="quantityField" promptText="Quantity"/>
+                        <DatePicker fx:id="expectedDatePicker" promptText="Expected Delivery Date"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="scheduleButton" text="Schedule Delivery"/>
+
+                <TableView fx:id="deliveryTable" prefHeight="300.0">
+                    <columns>
+                        <TableColumn fx:id="colSupplierName" text="Supplier Name" prefWidth="180.0"/>
+                        <TableColumn fx:id="colMaterialType" text="Material Type" prefWidth="160.0"/>
+                        <TableColumn fx:id="colQuantity" text="Quantity" prefWidth="120.0"/>
+                        <TableColumn fx:id="colScheduledDate" text="Scheduled Date" prefWidth="160.0"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="140.0"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="validateButton" text="Validate Delivery Data"/>
+                        <Button fx:id="analysisButton" text="Run Delivery Analysis"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

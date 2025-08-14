@@ -1,4 +1,4 @@
-package com.example.group15chainmeatproducer.SakibOme;
+package com.example.group15chainmeatproducer.SakibOme.LogisticsManager;
 
 import com.example.group15chainmeatproducer.SceneManager;
 import javafx.collections.FXCollections;
@@ -81,7 +81,6 @@ public class ShipmentTransportCordinationController implements Initializable {
 
     @FXML
     private void onConfirmAndSave(ActionEvent event) {
-        // Validate first
         String validationMessage = buildValidationMessage();
         if (!validationMessage.startsWith("All good")) {
             processedPlanTextArea.setText(validationMessage);

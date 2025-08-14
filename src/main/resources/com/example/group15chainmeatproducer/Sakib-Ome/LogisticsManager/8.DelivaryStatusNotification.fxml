@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.DeliveryStatusNotificationController"
+            prefHeight="760.0" prefWidth="1000.0">
+    <children>
+        <Label text="Delivery Status Notification"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="Find Delivery" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="deliveryIdField" promptText="Delivery ID"/>
+                        <Button fx:id="searchDeliveryButton" text="Search Delivery"/>
+                    </children>
+                </HBox>
+
+                <Label text="Delivery Details" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TableView fx:id="deliveryTable" prefHeight="250.0">
+                    <columns>
+                        <TableColumn fx:id="colDeliveryId" text="Delivery ID" prefWidth="160.0"/>
+                        <TableColumn fx:id="colClientName" text="Client Name" prefWidth="200.0"/>
+                        <TableColumn fx:id="colShipmentDate" text="Shipment Date" prefWidth="180.0"/>
+                        <TableColumn fx:id="colCurrentStatus" text="Current Status" prefWidth="200.0"/>
+                    </columns>
+                </TableView>
+
+                <Label text="Validation" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Button fx:id="validateButton" text="Validate Delivery Info"/>
+
+                <Label text="Process Notification" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <ComboBox fx:id="notificationTypeCombo" promptText="Notification Type"/>
+                        <DatePicker fx:id="notificationDatePicker" promptText="Notification Date"/>
+                    </children>
+                </HBox>
+
+                <Label text="Notification Content" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="subjectField" promptText="Subject"/>
+                        <TextField fx:id="messageField" promptText="Message"/>
+                        <Button fx:id="sendButton" text="Send Notification"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

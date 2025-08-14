@@ -1,4 +1,4 @@
-package com.example.group15chainmeatproducer.SakibOme;
+package com.example.group15chainmeatproducer.SakibOme.LogisticsManager;
 
 import java.time.LocalDate;
 

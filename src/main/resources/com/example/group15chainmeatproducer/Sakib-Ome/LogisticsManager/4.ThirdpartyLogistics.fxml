@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.ThirdPartyLogisticsController"
+            prefHeight="700.0" prefWidth="1000.0">
+    <children>
+        <Label text="Third-Party Logistics Provider Management"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <TableView fx:id="providerTable" prefHeight="260.0">
+                    <columns>
+                        <TableColumn fx:id="colProviderName" text="Provider Name" prefWidth="180.0"/>
+                        <TableColumn fx:id="colServiceType" text="Service Type" prefWidth="140.0"/>
+                        <TableColumn fx:id="colContractExpiry" text="Contract Expiry Date" prefWidth="180.0"/>
+                        <TableColumn fx:id="colContactPerson" text="Contact Person" prefWidth="160.0"/>
+                        <TableColumn fx:id="colContactInfo" text="Phone / Email" prefWidth="180.0"/>
+                        <TableColumn fx:id="colRating" text="Performance Rating" prefWidth="160.0"/>
+                    </columns>
+                </TableView>
+
+                <Label text="Add / Update Provider" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="providerNameField" promptText="Provider Name"/>
+                        <ComboBox fx:id="serviceTypeCombo" promptText="Service Type"/>
+                        <DatePicker fx:id="contractExpiryPicker" promptText="Contract Expiry"/>
+                        <TextField fx:id="contactPersonField" promptText="Contact Person"/>
+                        <TextField fx:id="contactInfoField" promptText="Phone / Email"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="saveButton" text="Save Provider Record"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <RadioButton fx:id="ratingExcellent" text="Excellent" toggleGroup="$ratingToggleGroup"/>
+                        <RadioButton fx:id="ratingGood" text="Good" toggleGroup="$ratingToggleGroup"/>
+                        <RadioButton fx:id="ratingAverage" text="Average" toggleGroup="$ratingToggleGroup"/>
+                        <RadioButton fx:id="ratingPoor" text="Poor" toggleGroup="$ratingToggleGroup"/>
+                    </children>
+                </HBox>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="searchButton" text="Search Provider"/>
+                        <Button fx:id="runAnalysisButton" text="Run Performance Analysis"/>
+                        <Button fx:id="validateButton" text="Validate Provider Data"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+
+    <fx:define>
+        <ToggleGroup fx:id="ratingToggleGroup"/>
+    </fx:define>
+</AnchorPane>

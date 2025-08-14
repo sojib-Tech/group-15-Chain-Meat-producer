@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.ShipmentScheduleController"
+            prefHeight="650.0" prefWidth="900.0">
+    <children>
+        <Label text="Shipment Schedule &amp; Delivery Monitoring"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <TextField fx:id="shipmentIdField" promptText="Shipment ID"/>
+
+                <DatePicker fx:id="plannedDatePicker" promptText="Planned Delivery Date"/>
+
+                <ComboBox fx:id="statusCombo" promptText="Shipment Status"/>
+
+                <Button fx:id="viewScheduleButton" text="View Current Schedule" onAction="#onViewCurrentSchedule"/>
+
+                <TableView fx:id="scheduleTable" prefHeight="300.0">
+                    <columns>
+                        <TableColumn fx:id="colShipmentId" text="Shipment ID" prefWidth="160.0"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="140.0"/>
+                        <TableColumn fx:id="colPlannedDate" text="Planned Delivery Date" prefWidth="180.0"/>
+                        <TableColumn fx:id="colActualDate" text="Actual Delivery Date" prefWidth="180.0"/>
+                        <TableColumn fx:id="colDelay" text="Delay (if any)" prefWidth="160.0"/>
+                    </columns>
+                </TableView>
+
+                <Button fx:id="validateButton" text="Validate Delivery Time" onAction="#onValidateDeliveryTime"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="actualDateField" promptText="Actual Delivery Date (yyyy-MM-dd)"/>
+                        <TextField fx:id="deliveryNotesField" promptText="Delivery Notes"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="updateButton" text="Update Delivery Record" onAction="#onUpdateDeliveryRecord"/>
+
+                <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

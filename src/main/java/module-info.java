@@ -10,7 +10,7 @@ module com.example.group15chainmeatproducer {
     exports com.example.group15chainmeatproducer;
     // Sakib-Ome (User-7) packages
     exports com.example.group15chainmeatproducer.SakibOme;
-    opens com.example.group15chainmeatproducer.SakibOme.model to javafx.base;
+    opens com.example.group15chainmeatproducer.SakibOme to javafx.base, javafx.fxml;
     opens com.example.group15chainmeatproducer.Saiful to javafx.fxml;
     exports com.example.group15chainmeatproducer.Saiful;
     opens com.example.group15chainmeatproducer.Saiful.User3 to javafx.fxml;
@@ -27,5 +27,6 @@ module com.example.group15chainmeatproducer {
     opens com.example.group15chainmeatproducer.Ami.Customer to javafx.fxml;
     exports com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative;
     opens com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative to javafx.fxml;
-    opens com.example.group15chainmeatproducer.SakibOme to javafx.base, javafx.fxml;
+    exports com.example.group15chainmeatproducer.SakibOme.LogisticsManager;
+    opens com.example.group15chainmeatproducer.SakibOme.LogisticsManager to javafx.base, javafx.fxml;
 }
