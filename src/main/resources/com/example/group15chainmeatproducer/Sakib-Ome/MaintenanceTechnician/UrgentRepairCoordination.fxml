@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.MaintenanceTechnician.UrgentRepairCoordinationController"
+            prefHeight="740.0" prefWidth="1000.0">
+    <children>
+        <Label text="Urgent Repair Coordination"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="Select Machine" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="machineIdField" promptText="Machine ID"/>
+                        <Button fx:id="findMachineButton" text="Find Machine"/>
+                    </children>
+                </HBox>
+
+                <Label text="Machine Status &amp; Operator Notes" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TableView fx:id="statusTable" prefHeight="280.0">
+                    <columns>
+                        <TableColumn fx:id="colMachineId" text="Machine ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colMachineName" text="Machine Name" prefWidth="180.0"/>
+                        <TableColumn fx:id="colCurrentIssue" text="Current Issue" prefWidth="220.0"/>
+                        <TableColumn fx:id="colOperatorNotes" text="Operator Notes" prefWidth="220.0"/>
+                        <TableColumn fx:id="colUrgency" text="Urgency Level" prefWidth="160.0"/>
+                    </columns>
+                </TableView>
+
+                <Label text="Update Repair Info" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TextArea fx:id="repairNotesArea" promptText="Repair Notes" prefRowCount="4" wrapText="true"/>
+                <ComboBox fx:id="repairStatusCombo" promptText="Repair Status"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="processRepairButton" text="Process Repair"/>
+                        <Button fx:id="validateButton" text="Validate Repair Data"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

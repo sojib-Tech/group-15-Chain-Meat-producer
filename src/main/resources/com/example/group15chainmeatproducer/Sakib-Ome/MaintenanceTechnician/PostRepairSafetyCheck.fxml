@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.MaintenanceTechnician.PostRepairSafetyCheckController"
+            prefHeight="720.0" prefWidth="1000.0">
+    <children>
+        <Label text="Post-Repair Safety Check" style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Button fx:id="runValidationButton" text="Run Safety Validation"/>
+
+                <Label text="Select Machine" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="machineIdField" promptText="Machine ID"/>
+                        <Button fx:id="inspectButton" text="Inspect Machine"/>
+                    </children>
+                </HBox>
+
+                <Label text="Safety Inspection Results" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TableView fx:id="resultsTable" prefHeight="260.0">
+                    <columns>
+                        <TableColumn fx:id="colMachineId" text="Machine ID" prefWidth="160.0"/>
+                        <TableColumn fx:id="colInspectionDate" text="Inspection Date" prefWidth="180.0"/>
+                        <TableColumn fx:id="colInspector" text="Inspector" prefWidth="160.0"/>
+                        <TableColumn fx:id="colSafetyStatus" text="Safety Status" prefWidth="160.0"/>
+                        <TableColumn fx:id="colNotes" text="Notes" prefWidth="220.0"/>
+                    </columns>
+                </TableView>
+
+                <Label text="Update Safety Record" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="safetyStatusCombo" promptText="Safety Status"/>
+                <TextArea fx:id="observationsArea" promptText="Observations / Recommendations" prefRowCount="4"
+                          wrapText="true"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="processButton" text="Process Safety Record"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
