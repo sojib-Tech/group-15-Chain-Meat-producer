@@ -144,7 +144,7 @@ public class ScheduledMaintenanceController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToMaintenanceMenu(event);
     }
 
     private MaintenanceRecord findById(String id) {

@@ -54,7 +54,7 @@ public class ReplacementPartsOrderingController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToMaintenanceMenu(event);
     }
 
     private String formatDate(LocalDate d) {

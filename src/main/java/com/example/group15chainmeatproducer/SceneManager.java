@@ -347,4 +347,32 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    public static void switchToLogisticsMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Sakib-Ome/LogisticsManager/MenuLogistics.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Logistics Manager - Menu");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void switchToMaintenanceMenu(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Sakib-Ome/MaintenanceTechnician/MenuMaintenance.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setTitle("Maintenance Technician - Menu");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

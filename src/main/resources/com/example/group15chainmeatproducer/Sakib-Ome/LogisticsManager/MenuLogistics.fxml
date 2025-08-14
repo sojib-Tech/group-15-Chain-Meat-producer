@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.MenuLogisticsController"
+            prefHeight="500.0" prefWidth="600.0">
+    <children>
+        <VBox spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0">
+            <children>
+                <Label text="Logistics Manager - Menu" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <Button text="1. Shipment Transportation Coordination" onAction="#openGoal1"/>
+                <Button text="2. Shipment Schedule &amp; Delivery Monitoring" onAction="#openGoal2"/>
+                <Button text="3. Transportation Cost Tracking" onAction="#openGoal3"/>
+                <Button text="4. Third-Party Logistics Provider Management" onAction="#openGoal4"/>
+                <Button text="5. Raw Material Delivery Tracking" onAction="#openGoal5"/>
+                <Button text="6. Address Shipment Delays / Cancellations" onAction="#openGoal6"/>
+                <Button text="7. Import/Export Documentation" onAction="#openGoal7"/>
+                <Button text="8. Delivery Status Notification" onAction="#openGoal8"/>
+                <Separator/>
+                <Button text="Back to Login" onAction="#backToLogin"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -138,7 +138,7 @@ public class MachinerySafetyInspectionController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToMaintenanceMenu(event);
     }
 
     private SafetyInspectionRecord findById(String id) {

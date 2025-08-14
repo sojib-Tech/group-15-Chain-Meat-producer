@@ -49,6 +49,6 @@ public class UrgentRepairCoordinationController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToMaintenanceMenu(event);
     }
 }

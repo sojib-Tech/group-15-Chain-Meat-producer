@@ -160,7 +160,7 @@ public class ShipmentScheduleController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToLogisticsMenu(event);
     }
 
     private ShipmentScheduleRecord findById(String id) {

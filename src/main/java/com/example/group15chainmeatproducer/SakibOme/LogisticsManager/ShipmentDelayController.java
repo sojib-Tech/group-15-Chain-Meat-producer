@@ -76,7 +76,7 @@ public class ShipmentDelayController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToLogisticsMenu(event);
     }
 
     private String formatDate(LocalDate d) {

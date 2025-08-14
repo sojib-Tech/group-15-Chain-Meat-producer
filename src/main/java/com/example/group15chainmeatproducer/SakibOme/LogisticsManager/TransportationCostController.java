@@ -200,7 +200,7 @@ public class TransportationCostController implements Initializable {
 
     @FXML
     private void onBackToMenu(ActionEvent event) {
-        SceneManager.switchToLogin(event);
+        SceneManager.switchToLogisticsMenu(event);
     }
 
     private TransportationCostRecord findByKey(String route, String mode, LocalDate month) {
