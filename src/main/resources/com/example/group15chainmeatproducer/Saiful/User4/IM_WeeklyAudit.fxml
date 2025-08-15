@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.QAPreSlaughterInspectionController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMWeeklyAuditController">
     <children>
-        <Label text="Pre-Slaughter Animal Inspection" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Weekly Inventory Audit" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Animal ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Audit Category:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Inspection Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Audit Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Visual Check Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Stock Count Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Pass"/>
-                        <RadioButton text="Fail"/>
+                        <RadioButton text="Match"/>
+                        <RadioButton text="Variance"/>
                     </children>
                 </VBox>
 
-                <Label text="Health Findings:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Manual Count:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Inspector Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Photo Path:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Animal ID"/>
-                        <TableColumn text="Status"/>
+                        <TableColumn text="Category"/>
+                        <TableColumn text="Count"/>
+                        <TableColumn text="Variance"/>
                         <TableColumn text="Date"/>
-                        <TableColumn text="Findings"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Inspection"/>
-                        <Button text="Notify Supervisor"/>
+                        <Button text="Attach Photo"/>
+                        <Button text="Submit Report"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

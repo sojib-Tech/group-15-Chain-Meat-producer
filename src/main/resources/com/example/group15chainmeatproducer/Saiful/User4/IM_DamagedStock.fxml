@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAHygieneChecklistController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMDamagedStockController">
     <children>
-        <Label text="Hygiene Checklist Verification" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Damaged/Expired Stock Management" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Cleaning Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox fx:id="cleaningBatchComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <Label text="Stock Item:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Verification Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Management Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Checklist Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Stock Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Complete"/>
-                        <RadioButton text="Incomplete"/>
+                        <RadioButton text="Damaged"/>
+                        <RadioButton text="Expired"/>
                     </children>
                 </VBox>
 
-                <Label text="Photo Upload:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Reason:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Batch ID"/>
+                        <TableColumn text="Item ID"/>
                         <TableColumn text="Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Photo"/>
+                        <TableColumn text="Quantity"/>
+                        <TableColumn text="Reason"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Upload Photo"/>
-                        <Button text="Submit Report"/>
+                        <Button text="Remove Stock"/>
+                        <Button text="Notify QA"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

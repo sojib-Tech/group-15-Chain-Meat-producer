@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAHACCPComplianceController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMDispatchStockController">
     <children>
-        <Label text="HACCP Compliance Points Monitor" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Dispatch Stock to Export Area" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Control Point:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Export Item:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Monitor Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Dispatch Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Compliance Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Dispatch Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Compliant"/>
-                        <RadioButton text="Non-Conformity"/>
+                        <RadioButton text="Scheduled"/>
+                        <RadioButton text="Dispatched"/>
                     </children>
                 </VBox>
 
-                <Label text="Observation:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Loading Team:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Parameters:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Control Point"/>
+                        <TableColumn text="Item ID"/>
+                        <TableColumn text="Quantity"/>
+                        <TableColumn text="Team"/>
                         <TableColumn text="Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Notes"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Compliance"/>
-                        <Button text="Flag Non-Conformity"/>
+                        <Button text="Assign Team"/>
+                        <Button text="Confirm Dispatch"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

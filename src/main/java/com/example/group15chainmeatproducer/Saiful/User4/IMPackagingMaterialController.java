@@ -5,20 +5,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class QAFinalProductApprovalController {
+public class IMPackagingMaterialController {
 
     @FXML
     private Button backButton;
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToUser3Menu(event);
+        SceneManager.switchToUser4Menu(event);
     }
 
     // Placeholder methods for other buttons
     @FXML
-    private void handleLoginDashboard(ActionEvent event) {
-        System.out.println("Login dashboard");
+    private void handleAccessScreen(ActionEvent event) {
+        System.out.println("Access screen");
     }
 
     @FXML
@@ -27,23 +27,23 @@ public class QAFinalProductApprovalController {
     }
 
     @FXML
-    private void handleReviewRecords(ActionEvent event) {
-        System.out.println("Review records");
+    private void handleInputMaterial(ActionEvent event) {
+        System.out.println("Input material");
     }
 
     @FXML
-    private void handleConfirmStandards(ActionEvent event) {
-        System.out.println("Confirm standards");
+    private void handleCompareUsage(ActionEvent event) {
+        System.out.println("Compare usage");
     }
 
     @FXML
-    private void handleSubmitDecision(ActionEvent event) {
-        System.out.println("Submit decision");
+    private void handleRecordDiscrepancy(ActionEvent event) {
+        System.out.println("Record discrepancy");
     }
 
     @FXML
-    private void handleNotifyDispatch(ActionEvent event) {
-        System.out.println("Notify dispatch");
+    private void handleNotifyProcurement(ActionEvent event) {
+        System.out.println("Notify procurement");
     }
 
     @FXML
@@ -53,6 +53,6 @@ public class QAFinalProductApprovalController {
 
     @FXML
     private void handleComplete(ActionEvent event) {
-        System.out.println("Complete approval");
+        System.out.println("Complete tracking");
     }
 }

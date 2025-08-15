@@ -82,7 +82,7 @@ public class SceneManager {
 
     public static void switchToUser4Menu(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Saiful/User4/IM_MenuPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getClassLoader().getResource("com/example/group15chainmeatproducer/Saiful/User4/IM_MenuPage.fxml"));
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

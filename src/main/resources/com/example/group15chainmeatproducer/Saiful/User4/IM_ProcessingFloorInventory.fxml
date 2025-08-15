@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAMeatQualityController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMProcessingFloorInventoryController">
     <children>
-        <Label text="Meat Quality Parameters Evaluation" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Processing Floor Inventory Monitor" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Meat Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Shift &amp; Line:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Evaluation Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Monitor Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Quality Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Inventory Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Approved"/>
-                        <RadioButton text="Hold"/>
+                        <RadioButton text="Normal"/>
+                        <RadioButton text="Low Stock"/>
                     </children>
                 </VBox>
 
-                <Label text="Color/Texture:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Consumption Data:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Lab Report:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Expected Usage:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Batch ID"/>
-                        <TableColumn text="Quality Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Results"/>
+                        <TableColumn text="Line ID"/>
+                        <TableColumn text="Consumption"/>
+                        <TableColumn text="Expected"/>
+                        <TableColumn text="Status"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Evaluation"/>
-                        <Button text="Approve Batch"/>
+                        <Button text="Update Inventory"/>
+                        <Button text="Alert Supervisor"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>
