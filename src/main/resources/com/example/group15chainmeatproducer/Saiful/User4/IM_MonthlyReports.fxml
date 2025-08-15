@@ -16,38 +16,39 @@
 
             <children>
                 <Label text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="reportTypeComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Report Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="reportDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Export Format:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Excel"/>
-                        <RadioButton text="PDF"/>
+                        <RadioButton fx:id="excelRadio" text="Excel"/>
+                        <RadioButton fx:id="pdfRadio" text="PDF"/>
                     </children>
                 </VBox>
 
                 <Label text="Category Filter:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="categoryFilterField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Date Filter:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="dateFilterField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="monthlyReportTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Report Type"/>
-                        <TableColumn text="Category"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Status"/>
+                        <TableColumn fx:id="reportTypeColumn" text="Report Type"/>
+                        <TableColumn fx:id="categoryColumn" text="Category"/>
+                        <TableColumn fx:id="dateColumn" text="Date"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Generate Report"/>
-                        <Button text="Share Report"/>
+                        <Button fx:id="generateReportButton" text="Generate Report" onAction="#handleGenerateReport"/>
+                        <Button fx:id="shareReportButton" text="Share Report" onAction="#handleShareReport"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>
