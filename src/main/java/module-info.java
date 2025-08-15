@@ -8,7 +8,7 @@ module com.example.group15chainmeatproducer {
 
     opens com.example.group15chainmeatproducer to javafx.fxml;
     exports com.example.group15chainmeatproducer;
-    // Sakib-Ome (User-7) packages
+    // Sakib-Ome (User-7) packagess
     opens com.example.group15chainmeatproducer.SakibOme.LogisticsManager to javafx.fxml, javafx.base;
     exports com.example.group15chainmeatproducer.SakibOme.LogisticsManager;
     opens com.example.group15chainmeatproducer.SakibOme.MaintenanceTechnician to javafx.fxml, javafx.base;
