@@ -10,29 +10,25 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class OrderStore {
-    private static final String DEFAULT_PATH = "orders.bin";
+public final class LoginStore {
+    private static final String DEFAULT_PATH = "logins.bin";
 
-    private OrderStore() {
+    private LoginStore() {
     }
 
-    public static ArrayList<Order> load() {
+    public static ArrayList<LoginAttempt> load() {
         return load(DEFAULT_PATH);
     }
 
-    public static ArrayList<Order> load(String path) {
+    public static ArrayList<LoginAttempt> load(String path) {
         Path p = Path.of(path);
-        if (!Files.exists(p)) {
-            return new ArrayList<>();
-        }
+        if (!Files.exists(p)) return new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(p)))) {
             Object obj = ois.readObject();
             if (obj instanceof List<?> list) {
-                ArrayList<Order> orders = new ArrayList<>();
-                for (Object o : list) {
-                    if (o instanceof Order order) orders.add(order);
-                }
-                return orders;
+                ArrayList<LoginAttempt> out = new ArrayList<>();
+                for (Object o : list) if (o instanceof LoginAttempt a) out.add(a);
+                return out;
             }
         } catch (IOException | ClassNotFoundException e) {
             return new ArrayList<>();
@@ -40,16 +36,16 @@ public final class OrderStore {
         return new ArrayList<>();
     }
 
-    public static void save(ArrayList<Order> orders) {
-        save(DEFAULT_PATH, orders);
+    public static void save(ArrayList<LoginAttempt> attempts) {
+        save(DEFAULT_PATH, attempts);
     }
 
-    public static void save(String path, ArrayList<Order> orders) {
+    public static void save(String path, ArrayList<LoginAttempt> attempts) {
         Path p = Path.of(path);
         try {
             if (p.getParent() != null) Files.createDirectories(p.getParent());
             try (ObjectOutputStream oos = new ObjectOutputStream(new BufferedOutputStream(Files.newOutputStream(p)))) {
-                oos.writeObject(new ArrayList<>(orders));
+                oos.writeObject(new ArrayList<>(attempts));
             }
         } catch (IOException e) {
         }
