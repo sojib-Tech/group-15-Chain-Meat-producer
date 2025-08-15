@@ -2,7 +2,6 @@ package com.example.group15chainmeatproducer.Ami.Customer;
 
 import com.example.group15chainmeatproducer.SceneManager;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -45,18 +44,14 @@ public class CheckoutPlaceOrderController {
 
     @FXML
     private void initialize() {
-        paymentMethodComboBox.setItems(FXCollections.observableArrayList("Credit Card", "Cash on Delivery"));
+        paymentMethodComboBox.getItems().setAll("Credit Card", "Cash on Delivery");
 
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        priceColumn.setCellValueFactory(cell -> {
-            CartItem item = cell.getValue();
-            double unit = item.getQuantity() > 0 ? item.getPrice() / item.getQuantity() : item.getPrice();
-            return new ReadOnlyObjectWrapper<>(unit);
-        });
-        subtotalColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getPrice()));
+        priceColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(0.0));
+        subtotalColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(0.0));
         orderItems.addAll(DataStoreCustomer.loadCart());
-        orderTable.setItems(FXCollections.observableArrayList(orderItems));
+        orderTable.getItems().setAll(orderItems);
     }
 
     @FXML
