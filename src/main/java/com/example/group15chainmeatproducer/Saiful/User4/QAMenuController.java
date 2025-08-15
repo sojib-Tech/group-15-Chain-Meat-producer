@@ -1,11 +1,11 @@
 package com.example.group15chainmeatproducer.Saiful.User4;
 
+import com.example.group15chainmeatproducer.SceneManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import com.example.group15chainmeatproducer.SceneManager;
 
-public class IMMenuController {
+public class QAMenuController {
 
     @FXML
     private Button backButton;
@@ -33,41 +33,41 @@ public class IMMenuController {
 
     @FXML
     private void handleGoal1(ActionEvent event) {
-        SceneManager.switchToUser4Goal1(event);
+        SceneManager.switchToUser3Goal1(event);
     }
 
     @FXML
     private void handleGoal2(ActionEvent event) {
-        SceneManager.switchToUser4Goal2(event);
+        SceneManager.switchToUser3Goal2(event);
     }
 
     @FXML
     private void handleGoal3(ActionEvent event) {
-        SceneManager.switchToUser4Goal3(event);
+        SceneManager.switchToUser3Goal3(event);
     }
 
     @FXML
     private void handleGoal4(ActionEvent event) {
-        SceneManager.switchToUser4Goal4(event);
+        SceneManager.switchToUser3Goal4(event);
     }
 
     @FXML
     private void handleGoal5(ActionEvent event) {
-        SceneManager.switchToUser4Goal5(event);
+        SceneManager.switchToUser3Goal5(event);
     }
 
     @FXML
     private void handleGoal6(ActionEvent event) {
-        SceneManager.switchToUser4Goal6(event);
+        SceneManager.switchToUser3Goal6(event);
     }
 
     @FXML
     private void handleGoal7(ActionEvent event) {
-        SceneManager.switchToUser4Goal7(event);
+        SceneManager.switchToUser3Goal7(event);
     }
 
     @FXML
     private void handleGoal8(ActionEvent event) {
-        SceneManager.switchToUser4Goal8(event);
+        SceneManager.switchToUser3Goal8(event);
     }
 }

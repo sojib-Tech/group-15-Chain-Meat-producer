@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMMonthlyReportsController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAColdStorageAuditController">
     <children>
-        <Label text="Monthly Stock Reports Generation" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Cold Storage Temperature Logs Audit" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,30 +15,30 @@
             </columnConstraints>
 
             <children>
-                <Label text="Report Type:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Storage Room:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Report Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Audit Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Export Format:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Temperature Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Excel"/>
-                        <RadioButton text="PDF"/>
+                        <RadioButton text="Normal"/>
+                        <RadioButton text="Fluctuation"/>
                     </children>
                 </VBox>
 
-                <Label text="Category Filter:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Temperature Reading:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Date Filter:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Audit Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Report Type"/>
-                        <TableColumn text="Category"/>
+                        <TableColumn text="Room ID"/>
+                        <TableColumn text="Temperature"/>
                         <TableColumn text="Date"/>
                         <TableColumn text="Status"/>
                     </columns>
@@ -46,8 +46,8 @@
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Generate Report"/>
-                        <Button text="Share Report"/>
+                        <Button text="Export Report"/>
+                        <Button text="Submit Verification"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

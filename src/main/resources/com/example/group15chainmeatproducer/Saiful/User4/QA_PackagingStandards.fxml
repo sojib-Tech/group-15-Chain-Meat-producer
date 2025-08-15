@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMStockReconciliationController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAPackagingStandardsController">
     <children>
-        <Label text="Stock Reconciliation After Dispatch" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Packaging Standards Approval" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Shipment Report:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Packaging Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Reconciliation Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Approval Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Stock Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Package Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Reconciled"/>
-                        <RadioButton text="Discrepancy"/>
+                        <RadioButton text="Approved"/>
+                        <RadioButton text="Rejected"/>
                     </children>
                 </VBox>
 
-                <Label text="Physical Count:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Label/Seal Check:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Actual Values:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Photo Path:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Shipment ID"/>
-                        <TableColumn text="Physical"/>
-                        <TableColumn text="Actual"/>
+                        <TableColumn text="Batch ID"/>
                         <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Photo"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Reconciliation"/>
-                        <Button text="Notify Warehouse"/>
+                        <Button text="Upload Photo"/>
+                        <Button text="Approve"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

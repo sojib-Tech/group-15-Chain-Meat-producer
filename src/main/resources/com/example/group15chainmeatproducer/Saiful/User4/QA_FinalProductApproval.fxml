@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMRawMaterialInventoryController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAFinalProductApprovalController">
     <children>
-        <Label text="Raw Material Inventory Verification" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Final Product Batch Approval" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Delivery Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Product Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Delivery Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Review Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Verification Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Approval Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Match"/>
-                        <RadioButton text="Mismatch"/>
+                        <RadioButton text="Approved"/>
+                        <RadioButton text="Rejected"/>
                     </children>
                 </VBox>
 
-                <Label text="Received Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Quality Records:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Supplier Invoice:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Decision Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
                         <TableColumn text="Batch ID"/>
-                        <TableColumn text="Quantity"/>
-                        <TableColumn text="Date"/>
                         <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Decision"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Report Mismatch"/>
-                        <Button text="Finalize Entry"/>
+                        <Button text="Submit Approval"/>
+                        <Button text="Notify Dispatch"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

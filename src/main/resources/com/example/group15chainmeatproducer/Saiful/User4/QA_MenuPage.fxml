@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAMenuController">
+    <children>
+        <Label text="Quality Assurance Officer Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+        <VBox spacing="10" style="-fx-padding: 20;">
+            <children>
+                <Button fx:id="goal1Button" text="1. Pre-Slaughter Animal Inspection" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal1"/>
+                <Button fx:id="goal2Button" text="2. Verify Hygiene Checklist" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal2"/>
+                <Button fx:id="goal3Button" text="3. Equipment Calibration" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal3"/>
+                <Button fx:id="goal4Button" text="4. Meat Quality Parameters" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal4"/>
+                <Button fx:id="goal5Button" text="5. Packaging Standards" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal5"/>
+                <Button fx:id="goal6Button" text="6. Cold Storage Audit" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal6"/>
+                <Button fx:id="goal7Button" text="7. HACCP Compliance" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal7"/>
+                <Button fx:id="goal8Button" text="8. Final Product Approval" prefWidth="300" prefHeight="40"
+                        onAction="#handleGoal8"/>
+                <Button fx:id="backButton" text="Back to Main Menu" prefWidth="300" prefHeight="40"
+                        onAction="#handleBack"/>
+            </children>
+        </VBox>
+    </children>
+</VBox>

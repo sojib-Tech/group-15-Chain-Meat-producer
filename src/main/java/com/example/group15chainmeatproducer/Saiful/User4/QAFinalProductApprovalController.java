@@ -1,11 +1,11 @@
-package com.example.group15chainmeatproducer.Saiful.User3;
+package com.example.group15chainmeatproducer.Saiful.User4;
 
 import com.example.group15chainmeatproducer.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class QAPackagingStandardsController {
+public class QAFinalProductApprovalController {
 
     @FXML
     private Button backButton;
@@ -17,8 +17,8 @@ public class QAPackagingStandardsController {
 
     // Placeholder methods for other buttons
     @FXML
-    private void handleVisitPanel(ActionEvent event) {
-        System.out.println("Visit panel");
+    private void handleLoginDashboard(ActionEvent event) {
+        System.out.println("Login dashboard");
     }
 
     @FXML
@@ -27,23 +27,23 @@ public class QAPackagingStandardsController {
     }
 
     @FXML
-    private void handleCheckQuality(ActionEvent event) {
-        System.out.println("Check quality");
+    private void handleReviewRecords(ActionEvent event) {
+        System.out.println("Review records");
     }
 
     @FXML
-    private void handleDocument(ActionEvent event) {
-        System.out.println("Document findings");
+    private void handleConfirmStandards(ActionEvent event) {
+        System.out.println("Confirm standards");
     }
 
     @FXML
-    private void handleUploadPhoto(ActionEvent event) {
-        System.out.println("Upload photo");
+    private void handleSubmitDecision(ActionEvent event) {
+        System.out.println("Submit decision");
     }
 
     @FXML
-    private void handleMakeDecision(ActionEvent event) {
-        System.out.println("Make decision");
+    private void handleNotifyDispatch(ActionEvent event) {
+        System.out.println("Notify dispatch");
     }
 
     @FXML
@@ -53,6 +53,6 @@ public class QAPackagingStandardsController {
 
     @FXML
     private void handleComplete(ActionEvent event) {
-        System.out.println("Complete review");
+        System.out.println("Complete approval");
     }
 }

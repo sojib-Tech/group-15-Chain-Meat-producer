@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.User4.IMPackagingMaterialController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAEquipmentCalibrationController">
     <children>
-        <Label text="Packaging Material Usage Tracking" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Label text="Equipment Calibration Oversight" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <GridPane hgap="10" vgap="10" style="-fx-padding: 20;">
             <columnConstraints>
@@ -15,39 +15,39 @@
             </columnConstraints>
 
             <children>
-                <Label text="Packing Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label text="Equipment:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                 <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Usage Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label text="Calibration Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                 <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-                <Label text="Material Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label text="Calibration Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Standard Usage"/>
-                        <RadioButton text="Discrepancy Found"/>
+                        <RadioButton text="Within Range"/>
+                        <RadioButton text="Deviation Detected"/>
                     </children>
                 </VBox>
 
-                <Label text="Material Issued:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <Label text="Metrics:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
-                <Label text="Standard Usage:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
                 <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Batch ID"/>
-                        <TableColumn text="Issued"/>
-                        <TableColumn text="Standard"/>
+                        <TableColumn text="Equipment"/>
                         <TableColumn text="Status"/>
+                        <TableColumn text="Date"/>
+                        <TableColumn text="Metrics"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Record Discrepancy"/>
-                        <Button text="Notify Procurement"/>
+                        <Button text="Submit Calibration"/>
+                        <Button text="Alert Maintenance"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>
