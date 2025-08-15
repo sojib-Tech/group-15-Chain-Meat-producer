@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.ImportExportDocumentController"
+            prefHeight="760.0" prefWidth="1000.0">
+    <children>
+        <Label text="Import/Export Documentation Management"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="Document Validation" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Button fx:id="validateDocsButton" text="Validate Shipment Docs"/>
+
+                <Label text="Find Shipment" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchShipmentIdField" promptText="Shipment ID"/>
+                        <Button fx:id="searchShipmentButton" text="Search Shipment"/>
+                    </children>
+                </HBox>
+
+                <Label text="Shipment Document Processing" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <ComboBox fx:id="documentTypeCombo" promptText="Document Type"/>
+                        <DatePicker fx:id="issueDatePicker" promptText="Document Issue Date"/>
+                        <Button fx:id="processDocumentButton" text="Process Document"/>
+                    </children>
+                </HBox>
+
+                <TableView fx:id="documentsTable" prefHeight="300.0">
+                    <columns>
+                        <TableColumn fx:id="colDocumentId" text="Document ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colShipmentId" text="Shipment ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="160.0"/>
+                        <TableColumn fx:id="colIssueDate" text="Issue Date" prefWidth="160.0"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="160.0"/>
+                    </columns>
+                </TableView>
+
+                <Label text="Add / Edit Document Details" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="documentNumberField" promptText="Document Number"/>
+                        <TextField fx:id="issuingAuthorityField" promptText="Issuing Authority"/>
+                        <Button fx:id="saveChangesButton" text="Save Changes"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

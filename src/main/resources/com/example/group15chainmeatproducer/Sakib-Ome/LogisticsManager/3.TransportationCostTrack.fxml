@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.TransportationCostController">
+    <children>
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Transportation Cost Tracking &amp; Reduction" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0" />
+
+        <VBox spacing="12.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <TableView fx:id="costTable" prefHeight="260.0">
+                    <columns>
+                        <TableColumn fx:id="colMonth" prefWidth="120.0" text="Month" />
+                        <TableColumn fx:id="colRoute" prefWidth="180.0" text="Route" />
+                        <TableColumn fx:id="colMode" prefWidth="160.0" text="Transport Mode" />
+                        <TableColumn fx:id="colTotalCost" prefWidth="140.0" text="Total Cost" />
+                        <TableColumn fx:id="colCostPerShipment" prefWidth="160.0" text="Cost per Shipment" />
+                        <TableColumn fx:id="colVariance" prefWidth="220.0" text="Variance from Last Month (%)" />
+                    </columns>
+                </TableView>
+
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Add / Update Cost Record" />
+
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="routeField" promptText="Route" />
+                        <ComboBox fx:id="modeCombo" promptText="Transport Mode" />
+                        <TextField fx:id="totalCostField" promptText="Total Cost" />
+                        <DatePicker fx:id="costMonthPicker" promptText="Cost Month" />
+                    </children>
+                </HBox>
+
+                <Button fx:id="saveButton" onAction="#onSaveCostRecord" text="Save Cost Record" />
+
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Cost Reduction Suggestions" />
+                <TextArea fx:id="suggestionsArea" prefRowCount="6" promptText="Suggestions will appear here" wrapText="true" />
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="runAnalysisButton" onAction="#onRunCostAnalysis" text="Run Cost Analysis" />
+                        <Button fx:id="validateButton" onAction="#onValidateCostData" text="Validate Cost Data" />
+                        <Button fx:id="backButton" onAction="#onBackToMenu" text="Back to Menu" />
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

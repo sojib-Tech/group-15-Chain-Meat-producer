@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.ShipmentDelayController"
+            prefHeight="720.0" prefWidth="1000.0">
+    <children>
+        <Label text="Shipment Delay &amp; Cancellation Management"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="Find Shipment" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchShipmentIdField" promptText="Shipment ID"/>
+                        <Button fx:id="searchButton" text="Search Shipment"/>
+                    </children>
+                </HBox>
+
+                <TableView fx:id="detailsTable" prefHeight="280.0">
+                    <columns>
+                        <TableColumn fx:id="colShipmentId" text="Shipment ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colOrigin" text="Origin" prefWidth="160.0"/>
+                        <TableColumn fx:id="colDestination" text="Destination" prefWidth="160.0"/>
+                        <TableColumn fx:id="colScheduledDate" text="Scheduled Delivery Date" prefWidth="200.0"/>
+                        <TableColumn fx:id="colCurrentStatus" text="Current Status" prefWidth="160.0"/>
+                        <TableColumn fx:id="colReason" text="Reason for Delay / Cancellation" prefWidth="260.0"/>
+                    </columns>
+                </TableView>
+
+                <Button fx:id="validateButton" text="Validate Shipment Data"/>
+
+                <Label text="Update Shipment Status" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <ComboBox fx:id="newStatusCombo" promptText="New Status"/>
+                        <DatePicker fx:id="newEstimatedDatePicker" promptText="New Estimated Delivery Date"/>
+                        <TextField fx:id="notesField" promptText="Notes / Comments"/>
+                    </children>
+                </HBox>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="processUpdateButton" text="Process Update"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

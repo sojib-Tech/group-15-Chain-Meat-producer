@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.MaintenanceTechnician.MaintenanceActivityDocumentationController"
+            prefHeight="760.0" prefWidth="1000.0">
+    <children>
+        <Label text="Maintenance Activity Documentation"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label text="Process Existing Records" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Button fx:id="reportButton" text="Generate Maintenance Report"
+                        onAction="#onGenerateMaintenanceReport"/>
+
+                <Label text="Find Maintenance Record" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="recordIdField" promptText="Record ID"/>
+                        <Button fx:id="searchButton" text="Search Record" onAction="#onSearchRecord"/>
+                    </children>
+                </HBox>
+
+                <Label text="Enter New Maintenance Activity" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <TextField fx:id="machineIdField" promptText="Machine ID"/>
+                        <TextField fx:id="performedByField" promptText="Performed By"/>
+                    </children>
+                </HBox>
+                <HBox spacing="10.0">
+                    <children>
+                        <DatePicker fx:id="activityDatePicker" promptText="Maintenance Date"/>
+                        <ComboBox fx:id="activityTypeCombo" promptText="Activity Type"/>
+                    </children>
+                </HBox>
+                <TextArea fx:id="descriptionArea" promptText="Description of Work" prefRowCount="4" wrapText="true"/>
+                <Button fx:id="saveButton" text="Save Maintenance Activity" onAction="#onSaveActivity"/>
+
+                <Label text="Maintenance History" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <TableView fx:id="historyTable" prefHeight="280.0">
+                    <columns>
+                        <TableColumn fx:id="colRecordId" text="Record ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colMachineId" text="Machine ID" prefWidth="140.0"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="160.0"/>
+                        <TableColumn fx:id="colActivityType" text="Activity Type" prefWidth="160.0"/>
+                        <TableColumn fx:id="colPerformedBy" text="Performed By" prefWidth="160.0"/>
+                        <TableColumn fx:id="colRemarks" text="Remarks" prefWidth="220.0"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Button fx:id="validateButton" text="Validate Record" onAction="#onValidateRecord"/>
+                        <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.group15chainmeatproducer.SakibOme.LogisticsManager.ShipmentTransportCordinationController"
+            prefHeight="650.0" prefWidth="900.0">
+    <children>
+        <Label text="Shipment Transportation Coordination"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"
+               AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0"/>
+
+        <VBox spacing="12.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <TextField fx:id="shipmentIdField" promptText="Shipment ID"/>
+
+                <ComboBox fx:id="shipmentTypeCombo" promptText="Select Shipment Type"/>
+
+                <DatePicker fx:id="scheduledDatePicker" promptText="Scheduled Transport Date"/>
+
+                <HBox spacing="10.0">
+                    <children>
+                        <Label text="Priority:"/>
+                        <RadioButton fx:id="priorityHighRadio" text="High" toggleGroup="$priorityToggleGroup"/>
+                        <RadioButton fx:id="priorityMediumRadio" text="Medium" toggleGroup="$priorityToggleGroup"/>
+                        <RadioButton fx:id="priorityLowRadio" text="Low" toggleGroup="$priorityToggleGroup"/>
+                    </children>
+                </HBox>
+
+                <Button fx:id="validateButton" text="Validate Shipment Details" onAction="#onValidate"/>
+
+                <TextArea fx:id="processedPlanTextArea" promptText="Processed Transportation Plan" prefRowCount="5"
+                          wrapText="true"/>
+
+                <Button fx:id="confirmButton" text="Confirm &amp; Save Plan" onAction="#onConfirmAndSave"/>
+
+                <TableView fx:id="shipmentTable" prefHeight="300.0">
+                    <columns>
+                        <TableColumn fx:id="colShipmentId" text="Shipment ID" prefWidth="180.0"/>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="140.0"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="160.0"/>
+                        <TableColumn fx:id="colPriority" text="Priority" prefWidth="140.0"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="160.0"/>
+                    </columns>
+                </TableView>
+
+                <Button fx:id="backButton" text="Back to Menu" onAction="#onBackToMenu"/>
+            </children>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+    </children>
+    <fx:define>
+        <ToggleGroup fx:id="priorityToggleGroup"/>
+    </fx:define>
+</AnchorPane>

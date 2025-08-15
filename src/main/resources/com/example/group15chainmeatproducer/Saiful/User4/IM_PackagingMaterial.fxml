@@ -16,38 +16,41 @@
 
             <children>
                 <Label text="Packing Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="packingBatchComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Usage Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="usageDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Material Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Standard Usage"/>
-                        <RadioButton text="Discrepancy Found"/>
+                        <RadioButton fx:id="standardUsageRadio" text="Standard Usage"/>
+                        <RadioButton fx:id="discrepancyFoundRadio" text="Discrepancy Found"/>
                     </children>
                 </VBox>
 
                 <Label text="Material Issued:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="materialIssuedField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Standard Usage:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="standardUsageField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="packagingTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Batch ID"/>
-                        <TableColumn text="Issued"/>
-                        <TableColumn text="Standard"/>
-                        <TableColumn text="Status"/>
+                        <TableColumn fx:id="batchIdColumn" text="Batch ID"/>
+                        <TableColumn fx:id="issuedColumn" text="Issued"/>
+                        <TableColumn fx:id="standardColumn" text="Standard"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Record Discrepancy"/>
-                        <Button text="Notify Procurement"/>
+                        <Button fx:id="recordDiscrepancyButton" text="Record Discrepancy"
+                                onAction="#handleRecordDiscrepancy"/>
+                        <Button fx:id="notifyProcurementButton" text="Notify Procurement"
+                                onAction="#handleNotifyProcurement"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

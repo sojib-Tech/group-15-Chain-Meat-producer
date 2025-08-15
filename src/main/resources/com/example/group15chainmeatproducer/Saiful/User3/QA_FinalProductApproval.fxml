@@ -16,38 +16,39 @@
 
             <children>
                 <Label text="Product Batch:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="productBatchComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Review Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="reviewDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Approval Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Approved"/>
-                        <RadioButton text="Rejected"/>
+                        <RadioButton fx:id="approvedRadio" text="Approved"/>
+                        <RadioButton fx:id="rejectedRadio" text="Rejected"/>
                     </children>
                 </VBox>
 
                 <Label text="Quality Records:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="qualityRecordsField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Decision Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="decisionNotesField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="finalProductTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Batch ID"/>
-                        <TableColumn text="Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Decision"/>
+                        <TableColumn fx:id="batchIdColumn" text="Batch ID"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
+                        <TableColumn fx:id="dateColumn" text="Date"/>
+                        <TableColumn fx:id="decisionColumn" text="Decision"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Approval"/>
-                        <Button text="Notify Dispatch"/>
+                        <Button fx:id="submitApprovalButton" text="Submit Approval" onAction="#handleSubmitApproval"/>
+                        <Button fx:id="notifyDispatchButton" text="Notify Dispatch" onAction="#handleNotifyDispatch"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

@@ -26,6 +26,8 @@ public class LoginController {
                 "Export Coordinator",
                 "Quality Assurance Officer",
                 "Inventory Manager",
+                "Logistics Manager",
+                "Maintenance Technician",
                 "Customer",
                 "Customer Service Representative"
         );
@@ -52,6 +54,12 @@ public class LoginController {
                 break;
             case "Inventory Manager":
                 SceneManager.switchToUser4Menu(event);
+                break;
+            case "Logistics Manager":
+                SceneManager.switchToLogisticsMenu(event);
+                break;
+            case "Maintenance Technician":
+                SceneManager.switchToMaintenanceMenu(event);
                 break;
             case "Customer":
                 SceneManager.switchToCustomerMenu(event);
