@@ -9,24 +9,18 @@
             prefHeight="600.0" prefWidth="900.0">
     <VBox spacing="12.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
           AnchorPane.rightAnchor="10.0">
-        <fx:define>
-            <ToggleGroup fx:id="deliveryGroup"/>
-        </fx:define>
         <Label text="Add Product to Cart" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-        <TextField fx:id="productNameField" promptText="Product name"/>
-        <TextField fx:id="quantityField" promptText="Quantity"/>
-        <ComboBox fx:id="variantComboBox" promptText="Select variant"/>
         <HBox spacing="10.0">
-            <RadioButton fx:id="homeDeliveryRadio" text="Home Delivery" toggleGroup="$deliveryGroup"/>
-            <RadioButton fx:id="pickupRadio" text="Pickup" toggleGroup="$deliveryGroup"/>
+            <ComboBox fx:id="productComboBox" promptText="Select product"/>
+            <TextField fx:id="quantityField" promptText="Quantity"/>
+            <DatePicker fx:id="orderDatePicker" promptText="Order date"/>
+            <Button fx:id="addToCartButton" text="Add to Cart" onAction="#handleAddToCart"/>
         </HBox>
-        <DatePicker fx:id="deliveryDatePicker" promptText="Select delivery/pickup date"/>
-        <Button fx:id="addToCartButton" text="Add to Cart" onAction="#handleAddToCart"/>
-        <TableView fx:id="cartTable" prefHeight="320.0">
+        <TableView fx:id="cartTable" prefHeight="420.0">
             <columns>
-                <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="320.0"/>
-                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="140.0"/>
-                <TableColumn fx:id="priceColumn" text="Price" prefWidth="200.0"/>
+                <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="420.0"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="180.0"/>
+                <TableColumn fx:id="dateAddedColumn" text="Date Added to Cart" prefWidth="300.0"/>
             </columns>
         </TableView>
         <HBox alignment="CENTER_RIGHT">

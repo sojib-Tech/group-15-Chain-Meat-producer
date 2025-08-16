@@ -16,38 +16,41 @@
 
             <children>
                 <Label text="Control Point:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="controlPointComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Monitor Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="monitorDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Compliance Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Compliant"/>
-                        <RadioButton text="Non-Conformity"/>
+                        <RadioButton fx:id="compliantRadio" text="Compliant"/>
+                        <RadioButton fx:id="nonConformityRadio" text="Non-Conformity"/>
                     </children>
                 </VBox>
 
                 <Label text="Observation:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="observationField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Parameters:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="parametersField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="haccpTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Control Point"/>
-                        <TableColumn text="Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Notes"/>
+                        <TableColumn fx:id="controlPointColumn" text="Control Point"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
+                        <TableColumn fx:id="dateColumn" text="Date"/>
+                        <TableColumn fx:id="notesColumn" text="Notes"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Submit Compliance"/>
-                        <Button text="Flag Non-Conformity"/>
+                        <Button fx:id="submitComplianceButton" text="Submit Compliance"
+                                onAction="#handleSubmitCompliance"/>
+                        <Button fx:id="flagNonConformityButton" text="Flag Non-Conformity"
+                                onAction="#handleFlagNonConformity"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

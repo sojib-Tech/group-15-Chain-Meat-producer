@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.group15chainmeatproducer.Saiful.QAPreSlaughterInspectionController">
+      fx:controller="com.example.group15chainmeatproducer.Saiful.User3.QAPreSlaughterInspectionController">
     <children>
         <Label text="Pre-Slaughter Animal Inspection" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
@@ -16,41 +16,60 @@
 
             <children>
                 <Label text="Animal ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="animalIdComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Label text="Inspection Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label text="Visual Check:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextArea fx:id="visualCheckArea" prefWidth="200" prefRowCount="3" GridPane.columnIndex="1"
+                          GridPane.rowIndex="1"/>
 
-                <Label text="Visual Check Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Label text="Health Check:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextArea fx:id="healthCheckArea" prefWidth="200" prefRowCount="3" GridPane.columnIndex="1"
+                          GridPane.rowIndex="2"/>
+
+                <Label text="Findings:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextArea fx:id="findingsArea" prefWidth="200" prefRowCount="3" GridPane.columnIndex="1"
+                          GridPane.rowIndex="3"/>
+
+                <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <ComboBox fx:id="statusComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                <Label text="Notification:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                <TextArea fx:id="notificationArea" prefWidth="200" prefRowCount="3" GridPane.columnIndex="1"
+                          GridPane.rowIndex="5"/>
+
+                <VBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <RadioButton text="Pass"/>
-                        <RadioButton text="Fail"/>
+                        <HBox spacing="10">
+                            <children>
+                                <Button fx:id="accessModuleButton" text="Access Inspection Module"
+                                        onAction="#handleAccessModule"/>
+                                <Button fx:id="selectAnimalButton" text="Select Animal" onAction="#handleSelectAnimal"/>
+                            </children>
+                        </HBox>
+                        <HBox spacing="10">
+                            <children>
+                                <Button fx:id="conductCheckButton" text="Complete Check"
+                                        onAction="#handleConductCheck"/>
+                                <Button fx:id="enterFindingsButton" text="Enter Findings"
+                                        onAction="#handleEnterFindings"/>
+                            </children>
+                        </HBox>
+                        <HBox spacing="10">
+                            <children>
+                                <Button fx:id="submitStatusButton" text="Submit Status" onAction="#handleSubmitStatus"/>
+                                <Button fx:id="notifySupervisorButton" text="Notify Supervisor"
+                                        onAction="#handleNotifySupervisor"/>
+                            </children>
+                        </HBox>
+                        <HBox spacing="10">
+                            <children>
+                                <Button fx:id="resetButton" text="Reset" onAction="#handleReset"/>
+                                <Button fx:id="completeButton" text="Complete" onAction="#handleComplete"/>
+                                <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
+                            </children>
+                        </HBox>
                     </children>
                 </VBox>
-
-                <Label text="Health Findings:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-                <Label text="Inspector Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
-
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
-                    <columns>
-                        <TableColumn text="Animal ID"/>
-                        <TableColumn text="Status"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Findings"/>
-                    </columns>
-                </TableView>
-
-                <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
-                    <children>
-                        <Button text="Submit Inspection"/>
-                        <Button text="Notify Supervisor"/>
-                        <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
-                    </children>
-                </HBox>
             </children>
         </GridPane>
     </children>

@@ -82,7 +82,25 @@ public class SceneManager {
 
     public static void switchToUser4Menu(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource("/com/example/group15chainmeatproducer/Saiful/User4/IM_MenuPage.fxml"));
+            String resourcePath = "/com/example/group15chainmeatproducer/Saiful/User4/IM_MenuPage.fxml";
+            java.net.URL resourceUrl = SceneManager.class.getResource(resourcePath);
+
+            if (resourceUrl == null) {
+                System.err.println("ERROR: Could not find resource: " + resourcePath);
+                System.err.println("Available resources in User4 directory:");
+                // Try to load a known working FXML as fallback
+                resourceUrl = SceneManager.class.getResource("/com/example/group15chainmeatproducer/Loginfxml.fxml");
+                if (resourceUrl != null) {
+                    System.err.println("Fallback: Loading login screen instead");
+                    SceneManager.switchToLogin(event);
+                    return;
+                } else {
+                    System.err.println("ERROR: Even fallback resource not found!");
+                    return;
+                }
+            }
+
+            FXMLLoader loader = new FXMLLoader(resourceUrl);
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -90,6 +108,7 @@ public class SceneManager {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            System.err.println("IOException in switchToUser4Menu: " + e.getMessage());
             e.printStackTrace();
         }
     }

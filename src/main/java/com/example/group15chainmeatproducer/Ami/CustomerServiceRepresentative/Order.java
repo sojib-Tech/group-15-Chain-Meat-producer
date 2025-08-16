@@ -1,92 +1,73 @@
 package com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 public class Order implements Serializable {
-    @Serial
     private static final long serialVersionUID = 1L;
-
-    private final StringProperty orderId = new SimpleStringProperty(this, "orderId");
-    private final StringProperty customerName = new SimpleStringProperty(this, "customerName");
-    private final StringProperty itemsSummary = new SimpleStringProperty(this, "itemsSummary");
-    private final StringProperty status = new SimpleStringProperty(this, "status");
-    private final ObjectProperty<LocalDate> orderDate = new SimpleObjectProperty<>(this, "orderDate");
+    private String orderId;
+    private String customerName;
+    private String items;
+    private String status;
+    private LocalDate orderDate;
+    private LocalDate updateDate;
 
     public Order() {
     }
 
-    public Order(String orderId, String customerName, String itemsSummary, String status, LocalDate orderDate) {
-        setOrderId(orderId);
-        setCustomerName(customerName);
-        setItemsSummary(itemsSummary);
-        setStatus(status);
-        setOrderDate(orderDate);
+    public Order(String orderId, String customerName, String items, String status, LocalDate orderDate) {
+        this.orderId = orderId;
+        this.customerName = customerName;
+        this.items = items;
+        this.status = status;
+        this.orderDate = orderDate;
     }
 
     public String getOrderId() {
-        return orderId.get();
-    }
-
-    public void setOrderId(String value) {
-        orderId.set(value);
-    }
-
-    public StringProperty orderIdProperty() {
         return orderId;
     }
 
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     public String getCustomerName() {
-        return customerName.get();
-    }
-
-    public void setCustomerName(String value) {
-        customerName.set(value);
-    }
-
-    public StringProperty customerNameProperty() {
         return customerName;
     }
 
-    public String getItemsSummary() {
-        return itemsSummary.get();
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void setItemsSummary(String value) {
-        itemsSummary.set(value);
+    public String getItems() {
+        return items;
     }
 
-    public StringProperty itemsSummaryProperty() {
-        return itemsSummary;
+    public void setItems(String items) {
+        this.items = items;
     }
 
     public String getStatus() {
-        return status.get();
-    }
-
-    public void setStatus(String value) {
-        status.set(value);
-    }
-
-    public StringProperty statusProperty() {
         return status;
     }
 
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public LocalDate getOrderDate() {
-        return orderDate.get();
-    }
-
-    public void setOrderDate(LocalDate value) {
-        orderDate.set(value);
-    }
-
-    public ObjectProperty<LocalDate> orderDateProperty() {
         return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
+        this.updateDate = updateDate;
     }
 }

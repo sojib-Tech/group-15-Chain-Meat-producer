@@ -1,78 +1,76 @@
 package com.example.group15chainmeatproducer.Ami.Customer;
 
-import com.example.group15chainmeatproducer.SceneManager;
-import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class AddToCartController {
 
     @FXML
-    private TextField productNameField;
+    private ComboBox<String> productComboBox;
     @FXML
     private TextField quantityField;
     @FXML
-    private ComboBox<String> variantComboBox;
+    private DatePicker orderDatePicker;
     @FXML
-    private ToggleGroup deliveryGroup;
+    private Button addToCartButton;
     @FXML
-    private RadioButton homeDeliveryRadio;
-    @FXML
-    private RadioButton pickupRadio;
-    @FXML
-    private DatePicker deliveryDatePicker;
-
+    private Button backButton;
     @FXML
     private TableView<CartItem> cartTable;
     @FXML
     private TableColumn<CartItem, String> productNameColumn;
     @FXML
-    private TableColumn<CartItem, Integer> quantityColumn;
+    private TableColumn<CartItem, String> quantityColumn;
     @FXML
-    private TableColumn<CartItem, Double> priceColumn;
+    private TableColumn<CartItem, String> dateAddedColumn;
 
     private final ArrayList<CartItem> cart = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        variantComboBox.setItems(FXCollections.observableArrayList("500 g", "1 kg", "2 kg"));
-
-        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
-        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        productNameColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getProductName()));
+        quantityColumn.setCellValueFactory(cell -> new SimpleStringProperty(Integer.toString(cell.getValue().getQuantity())));
+        dateAddedColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDateAddedToCart() == null ? "" : cell.getValue().getDateAddedToCart().toString()));
+        products.addAll(DataStoreCustomer.loadProducts());
+        ArrayList<String> names = new ArrayList<>();
+        for (Product p : products) names.add(p.getName());
+        productComboBox.getItems().setAll(names);
         cart.addAll(DataStoreCustomer.loadCart());
-        cartTable.setItems(FXCollections.observableArrayList(cart));
+        cartTable.getItems().setAll(cart);
     }
 
     @FXML
     private void handleAddToCart(ActionEvent event) {
-        String name = productNameField.getText() == null || productNameField.getText().trim().isEmpty()
-                ? "Unnamed Product" : productNameField.getText().trim();
-        String variant = variantComboBox.getValue();
+        String name = productComboBox.getValue();
         int qty;
         try {
             qty = Integer.parseInt(quantityField.getText());
         } catch (Exception e) {
             qty = 1;
         }
-        double pricePerUnit = switch (variant == null ? "" : variant) {
-            case "500 g" -> 6.0;
-            case "1 kg" -> 10.0;
-            case "2 kg" -> 18.0;
-            default -> 8.0;
-        };
-        double total = pricePerUnit * qty;
-        cart.add(new CartItem(name, qty, total));
-        DataStoreCustomer.saveCart(cart);
-        cartTable.setItems(FXCollections.observableArrayList(cart));
+        LocalDate date = orderDatePicker.getValue() == null ? LocalDate.now() : orderDatePicker.getValue();
+        if (name != null && !name.isEmpty() && qty > 0) {
+            cart.add(new CartItem(name, qty, date));
+            DataStoreCustomer.saveCart(cart);
+            cartTable.getItems().setAll(cart);
+        }
     }
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToCustomerMenu(event);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
 }

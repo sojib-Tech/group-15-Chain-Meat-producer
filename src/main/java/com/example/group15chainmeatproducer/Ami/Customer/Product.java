@@ -1,57 +1,23 @@
 package com.example.group15chainmeatproducer.Ami.Customer;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
+import java.time.LocalDate;
 
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
-
-    private String id;
-    private String imagePath; // optional path to image resource
     private String name;
-    private double price;
-    private String shortDescription;
+    private String category;
+    private LocalDate dateAdded;
+    private String description;
 
-    public Product(Image image, String name, double price, String shortDescription) {
+    public Product() {
+    }
+
+    public Product(String name, String category, LocalDate dateAdded, String description) {
         this.name = name;
-        this.price = price;
-        this.shortDescription = shortDescription;
-    }
-
-    public Product(String id, Image image, String name, double price, String shortDescription) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.shortDescription = shortDescription;
-    }
-
-    public Product(String id, String imagePath, String name, double price, String shortDescription) {
-        this.id = id;
-        this.imagePath = imagePath;
-        this.name = name;
-        this.price = price;
-        this.shortDescription = shortDescription;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    // For existing code expecting Image, return null (image loading can be added later)
-    public Image getImage() {
-        return null;
+        this.category = category;
+        this.dateAdded = dateAdded;
+        this.description = description;
     }
 
     public String getName() {
@@ -62,19 +28,27 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public String getCategory() {
+        return category;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public String getShortDescription() {
-        return shortDescription;
+    public LocalDate getDateAdded() {
+        return dateAdded;
     }
 
-    public void setShortDescription(String shortDescription) {
-        this.shortDescription = shortDescription;
+    public void setDateAdded(LocalDate dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

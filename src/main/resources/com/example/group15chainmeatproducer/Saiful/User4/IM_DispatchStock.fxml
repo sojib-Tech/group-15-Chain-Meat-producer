@@ -16,38 +16,40 @@
 
             <children>
                 <Label text="Export Item:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="exportItemComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Dispatch Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="dispatchDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Dispatch Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Scheduled"/>
-                        <RadioButton text="Dispatched"/>
+                        <RadioButton fx:id="scheduledRadio" text="Scheduled"/>
+                        <RadioButton fx:id="dispatchedRadio" text="Dispatched"/>
                     </children>
                 </VBox>
 
                 <Label text="Loading Team:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="loadingTeamField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="quantityField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="dispatchStockTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Item ID"/>
-                        <TableColumn text="Quantity"/>
-                        <TableColumn text="Team"/>
-                        <TableColumn text="Status"/>
+                        <TableColumn fx:id="itemIdColumn" text="Item ID"/>
+                        <TableColumn fx:id="quantityColumn" text="Quantity"/>
+                        <TableColumn fx:id="teamColumn" text="Team"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Assign Team"/>
-                        <Button text="Confirm Dispatch"/>
+                        <Button fx:id="assignTeamButton" text="Assign Team" onAction="#handleAssignTeam"/>
+                        <Button fx:id="confirmDispatchButton" text="Confirm Dispatch"
+                                onAction="#handleConfirmDispatch"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

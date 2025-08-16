@@ -1,12 +1,16 @@
 package com.example.group15chainmeatproducer.Ami.Customer;
 
-import com.example.group15chainmeatproducer.SceneManager;
-import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SearchSpecificProductController {
@@ -14,63 +18,48 @@ public class SearchSpecificProductController {
     @FXML
     private TextField searchField;
     @FXML
-    private ComboBox<String> categoryComboBox;
-    @FXML
-    private ToggleGroup availabilityGroup;
-    @FXML
-    private RadioButton inStockRadio;
-    @FXML
-    private RadioButton outOfStockRadio;
-    @FXML
-    private DatePicker availabilityDatePicker;
+    private DatePicker addedAfterDatePicker;
     @FXML
     private Button searchButton;
-
+    @FXML
+    private Button backButton;
     @FXML
     private TableView<Product> productTable;
     @FXML
-    private TableColumn<Product, String> idColumn;
-    @FXML
     private TableColumn<Product, String> nameColumn;
     @FXML
-    private TableColumn<Product, Double> priceColumn;
+    private TableColumn<Product, String> categoryColumn;
     @FXML
-    private TableColumn<Product, String> descriptionColumn;
+    private TableColumn<Product, String> dateAddedColumn;
 
     private final ArrayList<Product> masterData = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("shortDescription"));
-        categoryComboBox.setItems(FXCollections.observableArrayList("Beef", "Chicken", "Fish"));
-        // Load from bin
+        nameColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
+        categoryColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategory()));
+        dateAddedColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDateAdded() == null ? "" : cell.getValue().getDateAdded().toString()));
         masterData.addAll(DataStoreCustomer.loadProducts());
-        productTable.setItems(FXCollections.observableArrayList(masterData));
+        productTable.getItems().setAll(masterData);
     }
 
     @FXML
     private void handleSearch(ActionEvent event) {
         String q = searchField.getText() == null ? "" : searchField.getText().trim().toLowerCase();
-        if (q.isEmpty()) {
-            productTable.setItems(FXCollections.observableArrayList(masterData));
-            return;
-        }
+        LocalDate after = addedAfterDatePicker.getValue();
         ArrayList<Product> filtered = new ArrayList<>();
         for (Product p : masterData) {
-            if ((p.getId() != null && p.getId().toLowerCase().contains(q)) ||
-                    (p.getName() != null && p.getName().toLowerCase().contains(q)) ||
-                    (p.getShortDescription() != null && p.getShortDescription().toLowerCase().contains(q))) {
-                filtered.add(p);
-            }
+            boolean ok = true;
+            if (!q.isEmpty()) ok = ok && p.getName() != null && p.getName().toLowerCase().contains(q);
+            if (after != null) ok = ok && p.getDateAdded() != null && p.getDateAdded().isAfter(after);
+            if (ok) filtered.add(p);
         }
-        productTable.setItems(FXCollections.observableArrayList(filtered));
+        productTable.getItems().setAll(filtered);
     }
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToCustomerMenu(event);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
 }

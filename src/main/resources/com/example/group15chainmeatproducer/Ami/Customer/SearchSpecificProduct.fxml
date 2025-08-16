@@ -9,24 +9,17 @@
             prefHeight="600.0" prefWidth="900.0">
     <VBox spacing="10.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
           AnchorPane.rightAnchor="10.0">
-        <fx:define>
-            <ToggleGroup fx:id="availabilityGroup"/>
-        </fx:define>
         <Label text="Search Products" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
-        <TextField fx:id="searchField" promptText="Enter product name or keyword..."/>
-        <ComboBox fx:id="categoryComboBox" promptText="Select category"/>
         <HBox spacing="10.0">
-            <RadioButton fx:id="inStockRadio" text="In Stock" toggleGroup="$availabilityGroup"/>
-            <RadioButton fx:id="outOfStockRadio" text="Out of Stock" toggleGroup="$availabilityGroup"/>
+            <TextField fx:id="searchField" promptText="Product name or keyword"/>
+            <DatePicker fx:id="addedAfterDatePicker" promptText="Added After Date"/>
+            <Button fx:id="searchButton" text="Search" onAction="#handleSearch"/>
         </HBox>
-        <DatePicker fx:id="availabilityDatePicker" promptText="Availability date"/>
-        <Button fx:id="searchButton" text="Search" onAction="#handleSearch"/>
-        <TableView fx:id="productTable" prefHeight="380.0">
+        <TableView fx:id="productTable" prefHeight="480.0">
             <columns>
-                <TableColumn fx:id="idColumn" text="Product ID" prefWidth="120.0"/>
-                <TableColumn fx:id="nameColumn" text="Product Name" prefWidth="200.0"/>
-                <TableColumn fx:id="priceColumn" text="Price" prefWidth="120.0"/>
-                <TableColumn fx:id="descriptionColumn" text="Short Description" prefWidth="420.0"/>
+                <TableColumn fx:id="nameColumn" text="Product Name" prefWidth="300.0"/>
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="200.0"/>
+                <TableColumn fx:id="dateAddedColumn" text="Date Added" prefWidth="300.0"/>
             </columns>
         </TableView>
         <HBox alignment="CENTER_RIGHT">

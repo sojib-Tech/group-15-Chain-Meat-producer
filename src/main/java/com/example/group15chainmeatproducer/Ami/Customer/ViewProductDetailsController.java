@@ -1,76 +1,68 @@
 package com.example.group15chainmeatproducer.Ami.Customer;
 
-import com.example.group15chainmeatproducer.SceneManager;
-import javafx.collections.FXCollections;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ViewProductDetailsController {
+    @FXML
+    private ComboBox<String> productComboBox;
+    @FXML
+    private DatePicker asOfDatePicker;
+    @FXML
+    private Button showDetailsButton;
+    @FXML
+    private Button backButton;
+    @FXML
+    private TableView<Product> detailsTable;
+    @FXML
+    private TableColumn<Product, String> nameColumn;
+    @FXML
+    private TableColumn<Product, String> categoryColumn;
+    @FXML
+    private TableColumn<Product, String> descriptionColumn;
 
-    // Top section fields
-    @FXML
-    private ImageView productImageView;
-    @FXML
-    private TextField productNameField;
-    @FXML
-    private TextField quantityField;
-    @FXML
-    private ComboBox<String> variantComboBox;
-    @FXML
-    private ToggleGroup deliveryGroup;
-    @FXML
-    private RadioButton homeDeliveryRadio;
-    @FXML
-    private RadioButton pickupRadio;
-    @FXML
-    private DatePicker deliveryDatePicker;
-    @FXML
-    private Button addToCartButton;
-    
-    @FXML
-    private TableView<Review> reviewsTable;
-    @FXML
-    private TableColumn<Review, String> reviewerColumn;
-    @FXML
-    private TableColumn<Review, Integer> ratingColumn;
-    @FXML
-    private TableColumn<Review, String> commentColumn;
-
-    private final ArrayList<Review> masterReviews = new ArrayList<>();
+    private final ArrayList<Product> products = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        // Variants
-        variantComboBox.setItems(FXCollections.observableArrayList("1 kg", "500 g", "2 kg"));
-
-        // Reviews table setup
-        reviewerColumn.setCellValueFactory(new PropertyValueFactory<>("reviewer"));
-        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        commentColumn.setCellValueFactory(new PropertyValueFactory<>("comment"));
-
-        // Load from DataStoreCustomer
-        masterReviews.addAll(DataStoreCustomer.loadReviews());
-        reviewsTable.setItems(FXCollections.observableArrayList(masterReviews));
+        nameColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getName()));
+        categoryColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategory()));
+        descriptionColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDescription()));
+        products.addAll(DataStoreCustomer.loadProducts());
+        ArrayList<String> names = new ArrayList<>();
+        for (Product p : products) names.add(p.getName());
+        productComboBox.getItems().setAll(names);
     }
 
     @FXML
-    private void handleAddToCart(ActionEvent event) {
-        String name = productNameField.getText();
-        String qty = quantityField.getText();
-        String variant = variantComboBox.getValue();
-        String deliveryType = homeDeliveryRadio.isSelected() ? "Home Delivery" : (pickupRadio.isSelected() ? "Pickup" : "");
-        String date = deliveryDatePicker.getValue() != null ? deliveryDatePicker.getValue().toString() : "";
-        System.out.println("Add to Cart -> name=" + name + ", qty=" + qty + ", variant=" + variant + ", delivery=" + deliveryType + ", date=" + date);
+    private void handleShowDetails(ActionEvent event) {
+        String selectedName = productComboBox.getValue();
+        LocalDate asOf = asOfDatePicker.getValue();
+        ArrayList<Product> result = new ArrayList<>();
+        for (Product p : products) {
+            if (selectedName != null && selectedName.equals(p.getName())) {
+                if (asOf == null || (p.getDateAdded() != null && !p.getDateAdded().isAfter(asOf))) {
+                    result.add(p);
+                }
+                break;
+            }
+        }
+        detailsTable.getItems().setAll(result);
     }
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToCustomerMenu(event);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
     }
-
 }

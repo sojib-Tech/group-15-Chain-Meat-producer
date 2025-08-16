@@ -1,37 +1,30 @@
 package com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative;
 
-import java.time.LocalDate;
-import java.util.function.Predicate;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
-import com.example.group15chainmeatproducer.SceneManager;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class SearchForSpecificOrderController {
-
     @FXML
     private Label titleLabel;
     @FXML
     private TextField searchField;
-    @FXML
-    private ComboBox<String> statusCombo;
-    @FXML
-    private RadioButton last24hRadio;
-    @FXML
-    private RadioButton lastWeekRadio;
-    @FXML
-    private ToggleGroup quickFilterGroup;
     @FXML
     private DatePicker datePicker;
     @FXML
     private Button searchButton;
     @FXML
     private Button backButton;
-
     @FXML
     private TableView<Order> resultsTable;
     @FXML
@@ -39,95 +32,52 @@ public class SearchForSpecificOrderController {
     @FXML
     private TableColumn<Order, String> customerNameCol;
     @FXML
-    private TableColumn<Order, LocalDate> orderDateCol;
+    private TableColumn<Order, String> itemsCol;
     @FXML
     private TableColumn<Order, String> statusCol;
 
-    private final ObservableList<Order> master = FXCollections.observableArrayList();
-    private FilteredList<Order> filtered;
+    private final ArrayList<Order> orders = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        statusCombo.getItems().setAll("All", "Pending", "Completed", "Cancelled", "Shipped", "Delivered");
-        statusCombo.getSelectionModel().selectFirst();
-
-        // Ensure toggle group is set
-        if (quickFilterGroup == null) quickFilterGroup = new ToggleGroup();
-        last24hRadio.setToggleGroup(quickFilterGroup);
-        lastWeekRadio.setToggleGroup(quickFilterGroup);
-
-        // Table columns mapping
-        orderIdCol.setCellValueFactory(c -> c.getValue().orderIdProperty());
-        customerNameCol.setCellValueFactory(c -> c.getValue().customerNameProperty());
-        orderDateCol.setCellValueFactory(c -> c.getValue().orderDateProperty());
-        statusCol.setCellValueFactory(c -> c.getValue().statusProperty());
-
-        var loaded = OrderStore.load();
-        if (loaded.isEmpty()) {
-            seedSampleData();
-        } else {
-            master.setAll(loaded);
-        }
-        filtered = new FilteredList<>(master, o -> true);
-        resultsTable.setItems(filtered);
-
-        searchButton.setOnAction(e -> applyFilters());
-        backButton.setOnAction(this::handleBack);
-
-        // Enter key triggers search
-        searchField.setOnAction(e -> applyFilters());
-        datePicker.setOnAction(e -> applyFilters());
-        statusCombo.setOnAction(e -> applyFilters());
-        last24hRadio.setOnAction(e -> applyFilters());
-        lastWeekRadio.setOnAction(e -> applyFilters());
+        orderIdCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getOrderId()));
+        customerNameCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getCustomerName()));
+        itemsCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getItems()));
+        statusCol.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().getStatus()));
+        orders.addAll(OrderStore.load());
+        if (orders.isEmpty()) seedSampleData();
+        resultsTable.getItems().setAll(orders);
     }
 
-    private void applyFilters() {
-        final String query = searchField.getText() == null ? "" : searchField.getText().trim().toLowerCase();
-        final String status = statusCombo.getValue();
-        final Toggle quick = quickFilterGroup.getSelectedToggle();
-        final LocalDate picked = datePicker.getValue();
-
-        filtered.setPredicate(buildPredicate(query, status, quick, picked));
-    }
-
-    private Predicate<Order> buildPredicate(String q, String status, Toggle quick, LocalDate picked) {
-        return o -> {
-            if (o == null) return false;
-
-            boolean qMatch = q.isEmpty()
-                    || (o.getOrderId() != null && o.getOrderId().toLowerCase().contains(q))
-                    || (o.getCustomerName() != null && o.getCustomerName().toLowerCase().contains(q));
-
-            boolean sMatch = (status == null || status.equals("All"))
-                    || (o.getStatus() != null && o.getStatus().equalsIgnoreCase(status));
-
-            boolean quickMatch = true;
-            LocalDate today = LocalDate.now();
-            if (quick == last24hRadio) {
-                // Approximate: orders from today
-                quickMatch = o.getOrderDate() != null && o.getOrderDate().isEqual(today);
-            } else if (quick == lastWeekRadio) {
-                quickMatch = o.getOrderDate() != null && !o.getOrderDate().isBefore(today.minusDays(6));
+    @FXML
+    private void handleSearch(ActionEvent event) {
+        String q = searchField.getText() == null ? "" : searchField.getText().trim().toLowerCase();
+        LocalDate picked = datePicker.getValue();
+        ArrayList<Order> filtered = new ArrayList<>();
+        for (Order o : orders) {
+            boolean ok = true;
+            if (!q.isEmpty()) {
+                boolean idMatch = o.getOrderId() != null && o.getOrderId().toLowerCase().contains(q);
+                boolean nameMatch = o.getCustomerName() != null && o.getCustomerName().toLowerCase().contains(q);
+                ok = idMatch || nameMatch;
             }
-
-            boolean dateMatch = picked == null || (o.getOrderDate() != null && o.getOrderDate().isEqual(picked));
-
-            return qMatch && sMatch && quickMatch && dateMatch;
-        };
-    }
-
-    private void seedSampleData() {
-        master.setAll(
-                new Order("ORD-2001", "Evelyn Hart", "Steak x3", "Completed", LocalDate.now().minusDays(1)),
-                new Order("ORD-2002", "Frank Zhou", "Chicken x4", "Pending", LocalDate.now()),
-                new Order("ORD-2003", "Grace Lee", "Lamb x2", "Cancelled", LocalDate.now().minusDays(5)),
-                new Order("ORD-2004", "Henry Kim", "Pork x6", "Shipped", LocalDate.now().minusDays(8))
-        );
+            if (picked != null) ok = ok && o.getOrderDate() != null && o.getOrderDate().isEqual(picked);
+            if (ok) filtered.add(o);
+        }
+        resultsTable.getItems().setAll(filtered);
     }
 
     @FXML
     private void handleBack(ActionEvent event) {
-        SceneManager.switchToCSRMenu(event);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
+    }
+
+    private void seedSampleData() {
+        orders.add(new Order("ORD-2001", "Evelyn Hart", "Steak x3", "Pending", LocalDate.now().minusDays(1)));
+        orders.add(new Order("ORD-2002", "Frank Zhou", "Chicken x4", "Pending", LocalDate.now()));
+        orders.add(new Order("ORD-2003", "Grace Lee", "Lamb x2", "Shipped", LocalDate.now().minusDays(5)));
+        orders.add(new Order("ORD-2004", "Henry Kim", "Pork x6", "Delivered", LocalDate.now().minusDays(8)));
+        OrderStore.save(orders);
     }
 }

@@ -1,18 +1,22 @@
 package com.example.group15chainmeatproducer.Ami.Customer;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class CartItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String productName;
     private int quantity;
-    private double price;
+    private LocalDate dateAddedToCart;
 
-    public CartItem(String productName, int quantity, double price) {
+    public CartItem() {
+    }
+
+    public CartItem(String productName, int quantity, LocalDate dateAddedToCart) {
         this.productName = productName;
         this.quantity = quantity;
-        this.price = price;
+        this.dateAddedToCart = dateAddedToCart;
     }
 
     public String getProductName() {
@@ -31,11 +35,11 @@ public class CartItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
+    public LocalDate getDateAddedToCart() {
+        return dateAddedToCart;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setDateAddedToCart(LocalDate dateAddedToCart) {
+        this.dateAddedToCart = dateAddedToCart;
     }
 }

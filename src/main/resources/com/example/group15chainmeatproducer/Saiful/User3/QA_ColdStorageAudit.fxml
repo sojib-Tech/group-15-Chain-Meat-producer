@@ -16,38 +16,40 @@
 
             <children>
                 <Label text="Storage Room:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                <ComboBox prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                <ComboBox fx:id="storageRoomComboBox" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
                 <Label text="Audit Date:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                <DatePicker prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <DatePicker fx:id="auditDatePicker" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
                 <Label text="Temperature Status:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
                 <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <children>
-                        <RadioButton text="Normal"/>
-                        <RadioButton text="Fluctuation"/>
+                        <RadioButton fx:id="normalRadio" text="Normal"/>
+                        <RadioButton fx:id="fluctuationRadio" text="Fluctuation"/>
                     </children>
                 </VBox>
 
                 <Label text="Temperature Reading:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <TextField fx:id="temperatureField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
                 <Label text="Audit Notes:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-                <TextField prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <TextField fx:id="notesField" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-                <TableView prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2">
+                <TableView fx:id="auditTable" prefHeight="150" GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.columnSpan="2">
                     <columns>
-                        <TableColumn text="Room ID"/>
-                        <TableColumn text="Temperature"/>
-                        <TableColumn text="Date"/>
-                        <TableColumn text="Status"/>
+                        <TableColumn fx:id="roomIdColumn" text="Room ID"/>
+                        <TableColumn fx:id="temperatureColumn" text="Temperature"/>
+                        <TableColumn fx:id="dateColumn" text="Date"/>
+                        <TableColumn fx:id="statusColumn" text="Status"/>
                     </columns>
                 </TableView>
 
                 <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2">
                     <children>
-                        <Button text="Export Report"/>
-                        <Button text="Submit Verification"/>
+                        <Button fx:id="exportReportButton" text="Export Report" onAction="#handleExportReport"/>
+                        <Button fx:id="submitVerificationButton" text="Submit Verification"
+                                onAction="#handleSubmitVerification"/>
                         <Button fx:id="backButton" text="Back" onAction="#handleBack"/>
                     </children>
                 </HBox>

@@ -1,9 +1,10 @@
 package com.example.group15chainmeatproducer.Ami.CustomerServiceRepresentative;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,35 +16,35 @@ public final class OrderStore {
     private OrderStore() {
     }
 
-    public static ObservableList<Order> load() {
+    public static ArrayList<Order> load() {
         return load(DEFAULT_PATH);
     }
 
-    public static ObservableList<Order> load(String path) {
+    public static ArrayList<Order> load(String path) {
         Path p = Path.of(path);
         if (!Files.exists(p)) {
-            return FXCollections.observableArrayList();
+            return new ArrayList<>();
         }
         try (ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(Files.newInputStream(p)))) {
             Object obj = ois.readObject();
             if (obj instanceof List<?> list) {
-                List<Order> orders = new ArrayList<>();
+                ArrayList<Order> orders = new ArrayList<>();
                 for (Object o : list) {
                     if (o instanceof Order order) orders.add(order);
                 }
-                return FXCollections.observableArrayList(orders);
+                return orders;
             }
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return FXCollections.observableArrayList();
+        return new ArrayList<>();
     }
 
-    public static void save(ObservableList<Order> orders) {
+    public static void save(ArrayList<Order> orders) {
         save(DEFAULT_PATH, orders);
     }
 
-    public static void save(String path, ObservableList<Order> orders) {
+    public static void save(String path, ArrayList<Order> orders) {
         Path p = Path.of(path);
         try {
             if (p.getParent() != null) Files.createDirectories(p.getParent());
@@ -51,7 +52,6 @@ public final class OrderStore {
                 oos.writeObject(new ArrayList<>(orders));
             }
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
