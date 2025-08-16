@@ -9,10 +9,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,94 +25,122 @@ public class InputNumberOfCutMeatPieces {
     @FXML private TextField numberOfPieces;
     @FXML private DatePicker dateOfCutting;
 
-    @FXML private TableView<MeatCutData> table_input_number_of_cut_meat_pieces;
-    @FXML private TableColumn<MeatCutData, String> t_opratorName;
-    @FXML private TableColumn<MeatCutData, String> t_batch_Id;
-    @FXML private TableColumn<MeatCutData, String> t_numberOfPeices;
-    @FXML private TableColumn<MeatCutData, String> t_date;
+    @FXML
+    private TableView<CutMeatPieces> table_input_number_of_cut_meat_pieces;
+    @FXML
+    private TableColumn<CutMeatPieces, String> t_opratorName;
+    @FXML
+    private TableColumn<CutMeatPieces, String> t_batch_Id;
+    @FXML
+    private TableColumn<CutMeatPieces, String> t_numberOfPeices;
+    @FXML
+    private TableColumn<CutMeatPieces, String> t_date;
 
     @FXML private Button btnBack;
     @FXML private Button btnSubmit;
 
+    private ArrayList<CutMeatPieces> cutMeatPiecesList;
+    private final String DATA_FILE = "cutting_pieces.bin";
     private final File checkInFile = new File("checkIn.bin");
-    private final File outputFile = new File("cutting_pieces.bin");
-    private final ObservableList<MeatCutData> records = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
-        t_opratorName.setCellValueFactory(data -> data.getValue().operatorNameProperty());
-        t_batch_Id.setCellValueFactory(data -> data.getValue().animalIdProperty());
-        t_numberOfPeices.setCellValueFactory(data -> data.getValue().numberOfPiecesProperty());
-        t_date.setCellValueFactory(data -> data.getValue().cuttingDateProperty());
-
-        table_input_number_of_cut_meat_pieces.setItems(records);
-
-        loadAnimalIdsFromCheckIn();
-
-        loadSavedData();
+        setupTable();
+        setupComboBox();
+        loadData();
     }
 
-    private void loadAnimalIdsFromCheckIn() {
-        if (!checkInFile.exists()) return;
+    private void setupTable() {
+        t_opratorName.setCellValueFactory(new PropertyValueFactory<>("operatorName"));
+        t_batch_Id.setCellValueFactory(new PropertyValueFactory<>("animalId"));
+        t_numberOfPeices.setCellValueFactory(new PropertyValueFactory<>("numberOfPieces"));
+        t_date.setCellValueFactory(new PropertyValueFactory<>("cuttingDate"));
+    }
 
-        Set<String> uniqueIds = new HashSet<>();
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(checkInFile))) {
-            while (true) {
-                Object obj = ois.readObject();
-                if (obj instanceof checkIn.HygieneData) {
-                    uniqueIds.add(((checkIn.HygieneData) obj).getAnimalId());
+    private void setupComboBox() {
+        if (!checkInFile.exists()) {
+            animalIdComboBox.getItems().addAll("A001", "A002", "A003", "A004", "A005");
+        } else {
+            Set<String> uniqueIds = new HashSet<>();
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(checkInFile))) {
+                while (true) {
+                    Object obj = ois.readObject();
+                    if (obj instanceof checkIn.HygieneData) {
+                        uniqueIds.add(((checkIn.HygieneData) obj).getAnimalId());
+                    }
                 }
+            } catch (EOFException ignored) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (EOFException ignored) {
-        } catch (Exception e) {
-            e.printStackTrace();
+            animalIdComboBox.getItems().addAll(uniqueIds);
         }
-
-        animalIdComboBox.setItems(FXCollections.observableArrayList(uniqueIds));
     }
 
-    private void loadSavedData() {
-        if (!outputFile.exists()) return;
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(outputFile))) {
-            while (true) {
-                MeatCutData data = (MeatCutData) ois.readObject();
-                records.add(data);
-            }
-        } catch (EOFException ignored) {
+    private void loadData() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DATA_FILE))) {
+            cutMeatPiecesList = (ArrayList<CutMeatPieces>) ois.readObject();
         } catch (Exception e) {
-            e.printStackTrace();
+            cutMeatPiecesList = new ArrayList<>();
         }
+        refreshTable();
+    }
+
+    private void saveData() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
+            oos.writeObject(cutMeatPiecesList);
+        } catch (IOException e) {
+            showAlert("Error", "Failed to save data: " + e.getMessage());
+        }
+    }
+
+    private void refreshTable() {
+        ObservableList<CutMeatPieces> observableList = FXCollections.observableArrayList(cutMeatPiecesList);
+        table_input_number_of_cut_meat_pieces.setItems(observableList);
     }
 
     @FXML
     public void submitgoal4() {
-        String operator = oprator_name.getText();
-        String animalId = animalIdComboBox.getValue();
-        String pieces = numberOfPieces.getText();
-        LocalDate date = dateOfCutting.getValue();
+        if (validateInput()) {
+            String operatorName = oprator_name.getText();
+            String animalId = animalIdComboBox.getValue();
+            String pieces = numberOfPieces.getText();
+            String cuttingDate = dateOfCutting.getValue() != null ? dateOfCutting.getValue().toString() : "";
 
-        if (operator.isEmpty() || animalId == null || pieces.isEmpty() || date == null) {
-            showAlert("All fields are required.");
-            return;
+            CutMeatPieces cutMeat = new CutMeatPieces(operatorName, animalId, pieces, cuttingDate);
+            cutMeatPiecesList.add(cutMeat);
+
+            saveData();
+            refreshTable();
+            clearFields();
+            showAlert("Success", "Cut meat pieces data saved successfully!");
         }
-
-        MeatCutData data = new MeatCutData(operator, animalId, pieces, date.toString());
-        records.add(data);
-        appendToFile(data);
-        clearFields();
     }
 
-    private void appendToFile(MeatCutData data) {
-        try (FileOutputStream fos = new FileOutputStream(outputFile, true);
-             ObjectOutputStream oos = outputFile.exists() && outputFile.length() > 0
-                     ? new AppendingObjectOutputStream(fos)
-                     : new ObjectOutputStream(fos)) {
-            oos.writeObject(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Failed to save data.");
+    private boolean validateInput() {
+        if (oprator_name.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Operator Name");
+            return false;
         }
+        if (animalIdComboBox.getValue() == null) {
+            showAlert("Error", "Please select Animal ID");
+            return false;
+        }
+        if (numberOfPieces.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Number of Pieces");
+            return false;
+        }
+        if (dateOfCutting.getValue() == null) {
+            showAlert("Error", "Please select Cutting Date");
+            return false;
+        }
+        try {
+            Integer.parseInt(numberOfPieces.getText().trim());
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Number of Pieces must be a valid number");
+            return false;
+        }
+        return true;
     }
 
     private void clearFields() {
@@ -123,44 +153,51 @@ public class InputNumberOfCutMeatPieces {
     @FXML
     public void backto3() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FF_MenuPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Goal3MachineCalibration.fxml"));
+            Scene scene = new Scene(root);
             Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            showAlert("Unable to go back.");
+            showAlert("Error", "Unable to go back: " + e.getMessage());
         }
     }
 
-    private void showAlert(String msg) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText(msg);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 
-    // Serializable inner class
-    public static class MeatCutData implements Serializable {
-        private final String operatorName;
-        private final String animalId;
-        private final String numberOfPieces;
-        private final String cuttingDate;
+    public static class CutMeatPieces {
+        private String operatorName;
+        private String animalId;
+        private String numberOfPieces;
+        private String cuttingDate;
 
-        public MeatCutData(String operatorName, String animalId, String numberOfPieces, String cuttingDate) {
+        public CutMeatPieces(String operatorName, String animalId, String numberOfPieces, String cuttingDate) {
             this.operatorName = operatorName;
             this.animalId = animalId;
             this.numberOfPieces = numberOfPieces;
             this.cuttingDate = cuttingDate;
         }
 
-        public StringProperty operatorNameProperty() { return new SimpleStringProperty(operatorName); }
-        public StringProperty animalIdProperty() { return new SimpleStringProperty(animalId); }
-        public StringProperty numberOfPiecesProperty() { return new SimpleStringProperty(numberOfPieces); }
-        public StringProperty cuttingDateProperty() { return new SimpleStringProperty(cuttingDate); }
-    }
+        public String getOperatorName() {
+            return operatorName;
+        }
 
-    // Appending stream to avoid header corruption
-    private static class AppendingObjectOutputStream extends ObjectOutputStream {
-        public AppendingObjectOutputStream(OutputStream out) throws IOException { super(out); }
-        @Override protected void writeStreamHeader() throws IOException { reset(); }
+        public String getAnimalId() {
+            return animalId;
+        }
+
+        public String getNumberOfPieces() {
+            return numberOfPieces;
+        }
+
+        public String getCuttingDate() {
+            return cuttingDate;
+        }
     }
 }

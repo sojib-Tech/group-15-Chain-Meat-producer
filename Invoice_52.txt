@@ -1,0 +1,9 @@
+--- Customs Invoice Slip ---
+Customer ID: 52
+Name: sojib
+Address: bashundara
+Order Date: 2025-08-08
+Phone: 6326262
+
+Product Details:
+price 100 tk

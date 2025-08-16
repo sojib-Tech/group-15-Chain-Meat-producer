@@ -38,7 +38,6 @@ public class MarkShiftHandover {
 
     @FXML
     public void initialize() {
-        // Initialize combo boxes with sample data
         if (incom_opearator != null) {
             incom_opearator.getItems().addAll("Operator A", "Operator B", "Operator C");
         }

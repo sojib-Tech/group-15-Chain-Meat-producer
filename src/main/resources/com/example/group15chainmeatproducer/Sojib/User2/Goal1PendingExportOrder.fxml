@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.group15chainmeatproducer.Sojib.User2.PendingExportOrderController">
+    <children>
+        <Label layoutX="280.0" layoutY="20.0" prefHeight="34.0" prefWidth="240.0" text="Select Pending Export Order">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </Label>
+
+        <TextField fx:id="usernameField" layoutX="100.0" layoutY="80.0" promptText="Username"/>
+        <PasswordField fx:id="passwordField" layoutX="280.0" layoutY="80.0" promptText="Password"/>
+        <ComboBox fx:id="pendingOrderComboBox" layoutX="460.0" layoutY="80.0" prefWidth="200.0"
+                  promptText="Select Pending Order ID"/>
+
+        <Button fx:id="btnBack" layoutX="50.0" layoutY="30.0" onAction="#handleBack" prefHeight="30.0" prefWidth="80.0"
+                text="Back"/>
+        <Button fx:id="btnConfirm" layoutX="350.0" layoutY="130.0" onAction="#handleConfirmSelection" prefHeight="35.0"
+                prefWidth="120.0" text="Confirm Selection"/>
+
+        <TableView fx:id="exportOrderTable" layoutX="50.0" layoutY="200.0" prefHeight="350.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="colOrderId" prefWidth="175.0" text="Order ID"/>
+                <TableColumn fx:id="colCustomerName" prefWidth="175.0" text="Customer Name"/>
+                <TableColumn fx:id="colItems" prefWidth="175.0" text="Items"/>
+                <TableColumn fx:id="colStatus" prefWidth="175.0" text="Status"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

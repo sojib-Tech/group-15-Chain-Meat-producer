@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -24,117 +25,57 @@ public class ECMenuController {
         SceneManager.switchToLogin(event);
     }
 
-    @Deprecated
-    private void handleGoal1(ActionEvent event) {
-        System.out.println("Navigate to Goal 1: Select Pending Export Order");
-        // SceneManager.switchToUser2Goal1(event);
-    }
-
-    @Deprecated
-    private void handleGoal2(ActionEvent event) {
-        System.out.println("Navigate to Goal 2: Confirm Consignment Weight");
-        // SceneManager.switchToUser2Goal2(event);
-    }
-
-    @Deprecated
-    private void handleGoal3(ActionEvent event) {
-        System.out.println("Navigate to Goal 3: Input Destination and Client Name");
-        // SceneManager.switchToUser2Goal3(event);
-    }
-
-    @Deprecated
-    private void handleGoal4(ActionEvent event) {
-        System.out.println("Navigate to Goal 4: Submit Customs Invoice Details");
-        // SceneManager.switchToUser2Goal4(event);
-    }
-
-    @Deprecated
-    private void handleGoal5(ActionEvent event) {
-        System.out.println("Navigate to Goal 5: Choose Logistics Partner");
-        // SceneManager.switchToUser2Goal5(event);
-    }
-
-    @Deprecated
-    private void handleGoal6(ActionEvent event) {
-        System.out.println("Navigate to Goal 6: Input Dispatch");
-        // SceneManager.switchToUser2Goal6(event);
-    }
-
-    @Deprecated
-    private void handleGoal7(ActionEvent event) {
-        System.out.println("Navigate to Goal 7: Confirm Export Clearance");
-        // SceneManager.switchToUser2Goal7(event);
-    }
-
-    @Deprecated
-    private void handleGoal8(ActionEvent event) {
-        System.out.println("Navigate to Goal 8: Upload Delivery Confirmation");
-        // SceneManager.switchToUser2Goal8(event);
-    }
-
     @FXML
-    public void goal1OnAction(ActionEvent actionEvent)  throws IOException{
-            System.out.println("Navigate to Goal 1: Select Pending Export Order");
-            Parent root = FXMLLoader.load(getClass().getResource("9.EC Select Pending Export Order.fxml"));
+    public void goal1OnAction(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Goal1PendingExportOrder.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
+        } catch (IOException e) {
+            showAlert("Error", "Failed to load Pending Export Order screen: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void goal8OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 8: Upload Delivery Confirmation");
-        Parent root = FXMLLoader.load(getClass().getResource("16.EC Upload Signed Delivery Confirmation.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    public void goal2OnAction(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Goal2ConsignmentWeight.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showAlert("Error", "Failed to load Consignment Weight screen: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void goal6OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 6: Input Dispatch");
-        Parent root = FXMLLoader.load(getClass().getResource("14.EC Input Dispatch.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    public void goal3OnAction(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Goal3DestinationClient.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            showAlert("Error", "Failed to load Destination Client screen: " + e.getMessage());
+        }
     }
 
     @FXML
-    public void goal3OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 3: Input Destination and Client Name");
-        Parent root = FXMLLoader.load(getClass().getResource("goal_11_input destination.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void goal2OnAction(ActionEvent actionEvent) throws IOException{
-        System.out.println("Navigate to Goal 2: Confirm Consignment Weight and Quantity");
-        Parent root = FXMLLoader.load(getClass().getResource("10.EC Confirm Consignment Weight and Quantity.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    public void goal4OnAction(ActionEvent actionEvent) throws IOException{
+    public void goal4OnAction(ActionEvent actionEvent) throws IOException {
         System.out.println("Navigate to Goal 4: Submit Customs Invoice Details");
         Parent root = FXMLLoader.load(getClass().getResource("12.EC Submit Customs Invoice Details.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
     }
 
     @FXML
-    public void goal5OnAction(ActionEvent actionEvent) throws IOException{
+    public void goal5OnAction(ActionEvent actionEvent) throws IOException {
         System.out.println("Navigate to Goal 5: Choose Logistics Partner");
         Parent root = FXMLLoader.load(getClass().getResource("13.EC Choose Logistics Partner.fxml"));
         Scene scene = new Scene(root);
@@ -144,12 +85,41 @@ public class ECMenuController {
     }
 
     @FXML
-    public void goal7OnAction(ActionEvent actionEvent) throws IOException{
+    public void goal6OnAction(ActionEvent actionEvent) throws IOException {
+        System.out.println("Navigate to Goal 6: Input Dispatch");
+        Parent root = FXMLLoader.load(getClass().getResource("14.EC Input Dispatch.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    public void goal7OnAction(ActionEvent actionEvent) throws IOException {
         System.out.println("Navigate to Goal 7: Confirm Export Clearance");
         Parent root = FXMLLoader.load(getClass().getResource("15.EC Confirm Export Clearance via Customs Portal.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public void goal8OnAction(ActionEvent actionEvent) throws IOException {
+        System.out.println("Navigate to Goal 8: Upload Delivery Confirmation");
+        Parent root = FXMLLoader.load(getClass().getResource("16.EC Upload Signed Delivery Confirmation.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

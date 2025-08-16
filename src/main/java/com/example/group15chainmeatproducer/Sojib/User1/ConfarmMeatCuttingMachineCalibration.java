@@ -1,176 +1,148 @@
 package com.example.group15chainmeatproducer.Sojib.User1;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.util.*;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class ConfarmMeatCuttingMachineCalibration {
-
-    @FXML private TextField operatorNameField;
-    @FXML private ComboBox<String> animalIdComboBox;
-    @FXML private ComboBox<String> machineIdComboBox;
-    @FXML private ComboBox<String> statusComboBox;
-    @FXML private DatePicker calibrationDatePicker;
-
-    @FXML private TableView<CalibrationData> calibrationTableView;
-    @FXML private TableColumn<CalibrationData, String> colOperatorName;
-    @FXML private TableColumn<CalibrationData, String> colAnimalId;
-    @FXML private TableColumn<CalibrationData, String> colMachineId;
-    @FXML private TableColumn<CalibrationData, String> colStatus;
-
-    private final File checkInFile = new File("checkIn.bin");
-    private final File calibrationFile = new File("calibration_booking.bin");
-
-    private final ObservableList<CalibrationData> calibrationLogs = FXCollections.observableArrayList();
-    private final List<String> allMachineIds = List.of("M001", "M002", "M003", "M004", "M005");
+public class ConfarmMeatCuttingMachineCalibration implements Initializable {
 
     @FXML
-    public void initialize() {
-        colOperatorName.setCellValueFactory(data -> data.getValue().operatorNameProperty());
-        colAnimalId.setCellValueFactory(data -> data.getValue().animalIdProperty());
-        colMachineId.setCellValueFactory(data -> data.getValue().machineIdProperty());
-        colStatus.setCellValueFactory(data -> data.getValue().statusProperty());
-
-        calibrationTableView.setItems(calibrationLogs);
-        statusComboBox.setItems(FXCollections.observableArrayList("Booked", "Available"));
-
-        loadAnimalIdsFromCheckIn();
-        loadCalibrationLogs();
-        updateAvailableMachines();
-    }
-
-    private void loadAnimalIdsFromCheckIn() {
-        Set<String> animalIds = new HashSet<>();
-        if (!checkInFile.exists()) return;
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(checkInFile))) {
-            while (true) {
-                Object obj = ois.readObject();
-                if (obj instanceof checkIn.HygieneData data) {
-                    animalIds.add(data.getAnimalId());
-                }
-            }
-        } catch (EOFException ignored) {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        animalIdComboBox.setItems(FXCollections.observableArrayList(animalIds));
-    }
-
-    private void loadCalibrationLogs() {
-        calibrationLogs.clear();
-        if (!calibrationFile.exists()) return;
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(calibrationFile))) {
-            while (true) {
-                CalibrationData data = (CalibrationData) ois.readObject();
-                calibrationLogs.add(data);
-            }
-        } catch (EOFException ignored) {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateAvailableMachines() {
-        Set<String> booked = new HashSet<>();
-        for (CalibrationData data : calibrationLogs) {
-            if ("Booked".equalsIgnoreCase(data.status)) {
-                booked.add(data.machineId);
-            }
-        }
-
-        List<String> available = new ArrayList<>(allMachineIds);
-        available.removeAll(booked);
-        Collections.sort(available);
-        machineIdComboBox.setItems(FXCollections.observableArrayList(available));
-    }
-
+    private TextField operatorNameField;
     @FXML
-    public void saveLog() {
-        String name = operatorNameField.getText();
-        String animalId = animalIdComboBox.getValue();
-        String machineId = machineIdComboBox.getValue();
-        String status = statusComboBox.getValue();
-        LocalDate date = calibrationDatePicker.getValue();
+    private ComboBox<String> animalIdComboBox;
+    @FXML
+    private DatePicker calibrationDatePicker;
+    @FXML
+    private ComboBox<String> machineIdComboBox;
+    @FXML
+    private ComboBox<String> statusComboBox;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private Button btnSaveLog;
+    @FXML
+    private Button btnUpdateStatus;
+    @FXML
+    private TableView<MachineCalibration> calibrationTableView;
+    @FXML
+    private TableColumn<MachineCalibration, String> colOperatorName;
+    @FXML
+    private TableColumn<MachineCalibration, String> colAnimalId;
+    @FXML
+    private TableColumn<MachineCalibration, String> colMachineId;
+    @FXML
+    private TableColumn<MachineCalibration, String> colStatus;
 
-        if (name == null || name.isBlank() || animalId == null || machineId == null || status == null || date == null) {
-            showAlert("All fields are required.");
-            return;
-        }
+    private ArrayList<MachineCalibration> machineCalibrationList;
+    private final String DATA_FILE = "machineCalibration.bin";
 
-        CalibrationData data = new CalibrationData(name, animalId, date.toString(), machineId, status);
-        calibrationLogs.add(data);
-        appendToFile(data);
-        clearFields();
-        updateAvailableMachines();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupTable();
+        setupComboBoxes();
+        loadData();
     }
 
-    private void appendToFile(CalibrationData data) {
-        try {
-            boolean append = calibrationFile.exists() && calibrationFile.length() > 0;
-            FileOutputStream fos = new FileOutputStream(calibrationFile, true);
-            ObjectOutputStream oos = append ? new AppendingObjectOutputStream(fos) : new ObjectOutputStream(fos);
-            oos.writeObject(data);
-            oos.close();
+    private void setupTable() {
+        colOperatorName.setCellValueFactory(new PropertyValueFactory<>("operatorName"));
+        colAnimalId.setCellValueFactory(new PropertyValueFactory<>("animalId"));
+        colMachineId.setCellValueFactory(new PropertyValueFactory<>("machineId"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    }
+
+    private void setupComboBoxes() {
+        statusComboBox.getItems().addAll("Valid", "Expired", "Pending");
+        animalIdComboBox.getItems().addAll("A001", "A002", "A003", "A004", "A005");
+        machineIdComboBox.getItems().addAll("M001", "M002", "M003", "M004", "M005");
+    }
+
+    private void loadData() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DATA_FILE))) {
+            machineCalibrationList = (ArrayList<MachineCalibration>) ois.readObject();
+        } catch (Exception e) {
+            machineCalibrationList = new ArrayList<>();
+        }
+        refreshTable();
+    }
+
+    private void saveData() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
+            oos.writeObject(machineCalibrationList);
         } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Error saving log.");
+            showAlert("Error", "Failed to save data: " + e.getMessage());
+        }
+    }
+
+    private void refreshTable() {
+        ObservableList<MachineCalibration> observableList = FXCollections.observableArrayList(machineCalibrationList);
+        calibrationTableView.setItems(observableList);
+    }
+
+    @FXML
+    private void saveLog() {
+        if (validateInput()) {
+            String operatorName = operatorNameField.getText();
+            String animalId = animalIdComboBox.getValue();
+            String machineId = machineIdComboBox.getValue();
+            String status = statusComboBox.getValue();
+            String calibrationDate = calibrationDatePicker.getValue() != null ? calibrationDatePicker.getValue().toString() : "";
+
+            MachineCalibration calibration = new MachineCalibration(operatorName, animalId, machineId, status, calibrationDate);
+            machineCalibrationList.add(calibration);
+
+            saveData();
+            refreshTable();
+            clearFields();
+            showAlert("Success", "Machine calibration data saved successfully!");
         }
     }
 
     @FXML
-    public void updateStatus() {
-        CalibrationData selected = calibrationTableView.getSelectionModel().getSelectedItem();
+    private void updateStatus() {
+        MachineCalibration selected = calibrationTableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showAlert("Select a log from the table.");
+            showAlert("Error", "Please select a record to update");
             return;
         }
-
-        if (!"Booked".equalsIgnoreCase(selected.status)) {
-            showAlert("Only 'Booked' entries can be updated.");
-            return;
-        }
-
-        // Change status to Available
-        selected.status = "Available";
-        saveAllLogsToFile();
-        calibrationTableView.refresh();
-        updateAvailableMachines();
-        showAlert("Status updated to Available.");
+        selected.setStatus("Updated");
+        saveData();
+        refreshTable();
+        showAlert("Success", "Status updated successfully!");
     }
 
-    private void saveAllLogsToFile() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(calibrationFile))) {
-            for (CalibrationData data : calibrationLogs) {
-                oos.writeObject(data);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private boolean validateInput() {
+        if (operatorNameField.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Operator Name");
+            return false;
         }
-    }
-
-    @FXML
-    public void handleBack() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("FF_MenuPage.fxml"));
-            Stage stage = (Stage) operatorNameField.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            showAlert("Can't load menu.");
+        if (animalIdComboBox.getValue() == null) {
+            showAlert("Error", "Please select Animal ID");
+            return false;
         }
+        if (machineIdComboBox.getValue() == null) {
+            showAlert("Error", "Please select Machine ID");
+            return false;
+        }
+        if (statusComboBox.getValue() == null) {
+            showAlert("Error", "Please select Status");
+            return false;
+        }
+        if (calibrationDatePicker.getValue() == null) {
+            showAlert("Error", "Please select Calibration Date");
+            return false;
+        }
+        return true;
     }
 
     private void clearFields() {
@@ -181,38 +153,23 @@ public class ConfarmMeatCuttingMachineCalibration {
         calibrationDatePicker.setValue(null);
     }
 
-    private void showAlert(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Notice");
-        alert.setContentText(msg);
-        alert.showAndWait();
-    }
-
-    // Serializable Model
-    public static class CalibrationData implements Serializable {
-        private final String operatorName;
-        private final String animalId;
-        private final String date;
-        private final String machineId;
-        private String status;
-
-        public CalibrationData(String operatorName, String animalId, String date, String machineId, String status) {
-            this.operatorName = operatorName;
-            this.animalId = animalId;
-            this.date = date;
-            this.machineId = machineId;
-            this.status = status;
+    @FXML
+    private void handleBack() {
+        try {
+            Stage stage = (Stage) btnBack.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FF_MenuPage.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (Exception e) {
+            showAlert("Error", "Failed to go back: " + e.getMessage());
         }
-
-        public StringProperty operatorNameProperty() { return new SimpleStringProperty(operatorName); }
-        public StringProperty animalIdProperty() { return new SimpleStringProperty(animalId); }
-        public StringProperty machineIdProperty() { return new SimpleStringProperty(machineId); }
-        public StringProperty statusProperty() { return new SimpleStringProperty(status); }
     }
 
-    // Prevent header corruption when appending objects
-    private static class AppendingObjectOutputStream extends ObjectOutputStream {
-        public AppendingObjectOutputStream(OutputStream out) throws IOException { super(out); }
-        @Override protected void writeStreamHeader() throws IOException { reset(); }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

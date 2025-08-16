@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.group15chainmeatproducer.Sojib.User1.MachineBookingController">
+    <children>
+        <Label layoutX="260.0" layoutY="20.0" prefHeight="34.0" prefWidth="280.0" text="Machine Calibration Booking">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+
+        <TextField fx:id="machineIdField" layoutX="70.0" layoutY="80.0" promptText="Machine ID"/>
+        <TextField fx:id="bookerNameField" layoutX="250.0" layoutY="80.0" promptText="Booker Name"/>
+        <TextField fx:id="animalIdField" layoutX="430.0" layoutY="80.0" promptText="Animal ID"/>
+        <DatePicker fx:id="bookingDatePicker" layoutX="610.0" layoutY="80.0"/>
+
+        <Button fx:id="btnBack" layoutX="50.0" layoutY="30.0" onAction="#handleBack" prefHeight="30.0" prefWidth="80.0"
+                text="Back"/>
+        <Button fx:id="btnSaveBooking" layoutX="320.0" layoutY="130.0" onAction="#handleSaveBooking" prefHeight="35.0"
+                prefWidth="120.0" text="Save Booking"/>
+
+        <TableView fx:id="machineBookingTable" layoutX="50.0" layoutY="200.0" prefHeight="350.0" prefWidth="700.0">
+            <columns>
+                <TableColumn fx:id="colMachineId" prefWidth="175.0" text="Machine ID"/>
+                <TableColumn fx:id="colBookerName" prefWidth="175.0" text="Booker Name"/>
+                <TableColumn fx:id="colAnimalId" prefWidth="175.0" text="Animal ID"/>
+                <TableColumn fx:id="colBookingDate" prefWidth="175.0" text="Booking Date"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

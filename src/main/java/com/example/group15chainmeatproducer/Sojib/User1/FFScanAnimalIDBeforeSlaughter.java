@@ -63,7 +63,6 @@ public class FFScanAnimalIDBeforeSlaughter {
                 }
             }
         } catch (EOFException eof) {
-            // End of file — not found
             return false;
         } catch (Exception e) {
             e.printStackTrace();

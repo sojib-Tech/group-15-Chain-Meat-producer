@@ -1,151 +1,167 @@
 package com.example.group15chainmeatproducer.Sojib.User1;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.*;
-import java.time.LocalDate;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class checkIn {
+public class checkIn implements Initializable {
 
     @FXML private TextField operatorNameField;
     @FXML private TextField animalIdField;
-    @FXML private TextField placeField;
     @FXML private DatePicker dateField;
-
+    @FXML
+    private TextField placeField;
+    @FXML
+    private Button btnBack;
+    @FXML
+    private Button btnSave;
     @FXML private TableView<HygieneData> table_Upload_Hygiene_Checklist;
     @FXML private TableColumn<HygieneData, String> t_operator_name;
     @FXML private TableColumn<HygieneData, String> t_animal_id;
     @FXML private TableColumn<HygieneData, String> t_date;
     @FXML private TableColumn<HygieneData, String> t_place;
 
-    @FXML private Button btnBack;
+    private ArrayList<HygieneData> hygieneDataList;
+    private final String DATA_FILE = "checkIn.bin";
 
-    private final File binFile = new File("checkIn.bin");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setupTable();
+        loadData();
+    }
 
-    @FXML
-    public void initialize() {
-        t_operator_name.setCellValueFactory(data -> data.getValue().operatorNameProperty());
-        t_animal_id.setCellValueFactory(data -> data.getValue().animalIdProperty());
-        t_date.setCellValueFactory(data -> data.getValue().dateProperty());
-        t_place.setCellValueFactory(data -> data.getValue().placeProperty());
+    private void setupTable() {
+        t_operator_name.setCellValueFactory(new PropertyValueFactory<>("operatorName"));
+        t_animal_id.setCellValueFactory(new PropertyValueFactory<>("animalId"));
+        t_date.setCellValueFactory(new PropertyValueFactory<>("dateOfImport"));
+        t_place.setCellValueFactory(new PropertyValueFactory<>("place"));
+    }
 
-        loadFromBinFile(); // load records when screen opens
+    private void loadData() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DATA_FILE))) {
+            hygieneDataList = (ArrayList<HygieneData>) ois.readObject();
+        } catch (Exception e) {
+            hygieneDataList = new ArrayList<>();
+        }
+        refreshTable();
+    }
+
+    private void saveData() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DATA_FILE))) {
+            oos.writeObject(hygieneDataList);
+        } catch (IOException e) {
+            showAlert("Error", "Failed to save data: " + e.getMessage());
+        }
+    }
+
+    private void refreshTable() {
+        ObservableList<HygieneData> observableList = FXCollections.observableArrayList(hygieneDataList);
+        table_Upload_Hygiene_Checklist.setItems(observableList);
     }
 
     @FXML
-    public void save() {
-        String operatorName = operatorNameField.getText().trim();
-        String animalId = animalIdField.getText().trim();
-        String place = placeField.getText().trim();
-        LocalDate date = dateField.getValue();
+    private void save() {
+        if (validateInput()) {
+            String operatorName = operatorNameField.getText();
+            String animalId = animalIdField.getText();
+            String dateOfImport = dateField.getValue() != null ? dateField.getValue().toString() : "";
+            String place = placeField.getText();
 
-        if (operatorName.isEmpty() || animalId.isEmpty() || place.isEmpty() || date == null) {
-            showAlert("Please fill in all fields.");
-            return;
+            HygieneData hygiene = new HygieneData(operatorName, animalId, dateOfImport, place);
+            hygieneDataList.add(hygiene);
+
+            saveData();
+            refreshTable();
+            clearFields();
+            showAlert("Success", "Check-in data saved successfully!");
         }
+    }
 
-        HygieneData data = new HygieneData(operatorName, animalId, date.toString(), place);
-        table_Upload_Hygiene_Checklist.getItems().add(data);
-        appendToBinFile(data);
+    private boolean validateInput() {
+        if (operatorNameField.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Operator Name");
+            return false;
+        }
+        if (animalIdField.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Animal ID");
+            return false;
+        }
+        if (dateField.getValue() == null) {
+            showAlert("Error", "Please select Date");
+            return false;
+        }
+        if (placeField.getText().trim().isEmpty()) {
+            showAlert("Error", "Please enter Place");
+            return false;
+        }
+        return true;
+    }
 
+    private void clearFields() {
         operatorNameField.clear();
         animalIdField.clear();
-        placeField.clear();
         dateField.setValue(null);
-    }
-
-    private void appendToBinFile(HygieneData data) {
-        try {
-            boolean fileExists = binFile.exists() && binFile.length() > 0;
-            FileOutputStream fos = new FileOutputStream(binFile, true);
-            ObjectOutputStream oos = fileExists
-                    ? new AppendingObjectOutputStream(fos)
-                    : new ObjectOutputStream(fos);
-
-            oos.writeObject(data);
-            oos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Failed to save data.");
-        }
-    }
-
-    private void loadFromBinFile() {
-        if (!binFile.exists()) return;
-
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(binFile))) {
-            while (true) {
-                HygieneData data = (HygieneData) ois.readObject();
-                table_Upload_Hygiene_Checklist.getItems().add(data);
-            }
-        } catch (EOFException eof) {
-            // End of file — normal case
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        placeField.clear();
     }
 
     @FXML
-    public void backgoal1() {
+    private void backgoal1() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("FF_MenuPage.fxml"));
             Stage stage = (Stage) btnBack.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Could not load menu screen.");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("FF_MenuPage.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (Exception e) {
+            showAlert("Error", "Failed to go back: " + e.getMessage());
         }
     }
 
-    private void showAlert(String msg) {
+    private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Message");
-        alert.setContentText(msg);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
     }
 
-    // Serializable data class
     public static class HygieneData implements Serializable {
-        private final String operatorName;
-        private final String animalId;
-        private final String date;
-        private final String place;
+        private String operatorName;
+        private String animalId;
+        private String dateOfImport;
+        private String place;
 
-        public HygieneData(String operatorName, String animalId, String date, String place) {
+        public HygieneData(String operatorName, String animalId, String dateOfImport, String place) {
             this.operatorName = operatorName;
             this.animalId = animalId;
-            this.date = date;
+            this.dateOfImport = dateOfImport;
             this.place = place;
         }
 
-        // Used by scan controller
+        public String getOperatorName() {
+            return operatorName;
+        }
+
         public String getAnimalId() {
             return animalId;
         }
 
-        public StringProperty operatorNameProperty() { return new SimpleStringProperty(operatorName); }
-        public StringProperty animalIdProperty() { return new SimpleStringProperty(animalId); }
-        public StringProperty dateProperty() { return new SimpleStringProperty(date); }
-        public StringProperty placeProperty() { return new SimpleStringProperty(place); }
-    }
-
-    // Appends objects to .bin file without duplicating headers
-    private static class AppendingObjectOutputStream extends ObjectOutputStream {
-        public AppendingObjectOutputStream(OutputStream out) throws IOException {
-            super(out);
+        public String getDateOfImport() {
+            return dateOfImport;
         }
 
-        @Override
-        protected void writeStreamHeader() throws IOException {
-            reset(); // don't write a header again
+        public String getPlace() {
+            return place;
         }
     }
 }
